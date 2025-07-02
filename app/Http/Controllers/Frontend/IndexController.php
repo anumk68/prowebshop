@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\ContactUs;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Package;
 use App\Models\PhpLaravelPackage;
 use App\Models\Type;
@@ -342,6 +344,74 @@ class IndexController extends Controller
         } else {
             return redirect()->route('user.login.get')->with('error', 'Please login!');
         }
+    }
+
+    public function placeOrder(Request $request)
+    {
+        $request->validate([
+          'phone' => 'required', 'digits:10',
+            'address'        => 'required|string',
+            'city'           => 'required|string',
+            'pincode'        => 'required|string|max:10',
+            'payment_method' => 'required|in:cod,online',
+        ]);
+
+        $user = auth()->guard('userWeb')->user();
+
+        $cartItems = Cart::with('package')->where('user_id', $user->id)->get();
+
+        try {
+            DB::beginTransaction();
+
+            if ($cartItems->isEmpty()) {
+                return redirect()->back()->with('error', 'Your cart is empty.');
+            }
+
+            $total = 0;
+
+            foreach ($cartItems as $item) {
+                $firstAmount = is_array($item->package->amount)
+                ? $item->package->amount[0]
+                : $item->package->amount;
+
+                preg_match('/\d+/', $firstAmount, $matches);
+                $cleanAmount = isset($matches[0]) ? (float) $matches[0] : 0;
+
+                $item->calculated_price = $cleanAmount * $item->quantity;
+                $total += $item->calculated_price;
+            }
+
+            $order = Order::create([
+                'user_id'        => $user->id,
+                'phone'          => $request->phone,
+                'address'        => $request->address,
+                'city'           => $request->city,
+                'pincode'        => $request->pincode,
+                'payment_method' => $request->payment_method,
+                'payment_status' => $request->payment_method === 'cod' ? 'pending' : 'Paid',
+                'total_amount'   => $total,
+                'status'         => 'pending',
+            ]);
+
+            foreach ($cartItems as $item) {
+                OrderItem::create([
+                    'order_id'   => $order->id,
+                    'product_id' => $item->package_id,
+                    'quantity'   => $item->quantity,
+                    'price'      => $item->calculated_price,
+                ]);
+            }
+
+            Cart::where('user_id', $user->id)->delete();
+            DB::commit();
+
+            return redirect()->route('/')->with('success', 'Order placed successfully.');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Order failed: ' . $e->getMessage());
+        }
+
     }
 
 }

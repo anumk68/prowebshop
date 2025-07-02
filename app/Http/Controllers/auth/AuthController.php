@@ -56,7 +56,7 @@ class AuthController extends Controller
               Auth::logout();
         return redirect()->back()->withErrors(['email' => 'You are not authorized to login.']);
         }
-        return redirect()->back()->withInput($request->only('email'));
+        return redirect()->back()->with('error', 'Invalid email or password');
     }
 
     public function dashboard()

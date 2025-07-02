@@ -21,34 +21,26 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-        <script defer src="script.js"></script>
-        <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script defer src="script.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    {{-- Favicon --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/img/prowebshop_logo_head.png') }}">
 
-    <title>Prowebshop</title>
-
+    <title>Prowebshop - {{ Route::currentRouteName() }}</title>
 </head>
 
 <body>
-
-
-
-
     @include('frontend.layout.partials.header')
-
-
     <div class="main">
         @yield('content')
     </div>
-
-
     @include('frontend.layout.partials.footer')
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -66,7 +58,7 @@
 
     <script>
         document.querySelectorAll('.dropdown > a').forEach(item => {
-            item.addEventListener('click', function (e) {
+            item.addEventListener('click', function(e) {
                 e.preventDefault();
                 let submenu = this.nextElementSibling;
                 submenu.classList.toggle('active');
@@ -109,7 +101,7 @@
         startCountdown(5 * 24 * 60 * 60); // Example: 5 days countdown
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let navLinks = document.querySelectorAll(".nav-links li a");
             let currentLocation = window.location.href;
 
@@ -143,7 +135,7 @@
         });
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".hero_banners").owlCarousel({
                 items: 1,
                 loop: true,

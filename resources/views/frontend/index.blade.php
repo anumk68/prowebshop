@@ -158,9 +158,10 @@
             <div class="pricing_heading">
                 <!-- <h2>Select The <span class="linear_color">Package</span> That Fits You Best</h2> -->
                 <h2><span class="linear_color">PHP Laravel</span> Website Development Packages</h2>
-                <p>Website Design Innovation provides various packages for WordPress development. Our packages aim to offer
-                    you
-                    the utmost flexibility while fulfilling your website needs.</p>
+                <p>Pro Web Shop builds powerful, scalable websites using PHP, Laravel, React, and Java technologies.
+                    Experience fast, secure, and dynamic web solutions tailored to your business needs with the latest in
+                    modern development frameworks.
+                </p>
             </div>
             <div class="row">
                 @foreach ($php as $laravel)
@@ -477,7 +478,7 @@
     <section class="pricing-section py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Inspiring Designs With Budget-Friendly Packages</h2>
+               <h2>Inspiring Designs With Budget-Friendly Packages</h2>
                 <p>At Pro Web Shop, we create stunning, professional designs tailored to your brand—without breaking the
                     bank. Get creative excellence and affordability in one perfect package.
                 </p>
@@ -560,9 +561,10 @@
     <section class="pricing-section ">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Choose a Budget Plan That Suits Your Needs</h2>
-                <p>Pro Web Shop offers customizable budget plans to match your business goals. Whether you're just starting
-                    or scaling up, our affordable solutions ensure you get the best value for every investment.
+                <h2>Shopify Website Development Services Packages</h2>
+                <p>Pro Web Shop builds powerful, scalable websites using PHP, Laravel, React, and Java technologies.
+                    Experience fast, secure, and dynamic web solutions tailored to your business needs with the latest in
+                    modern development frameworks.
                 </p>
             </div>
             <div class="row">

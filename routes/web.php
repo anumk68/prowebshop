@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\ContactUsController;
 use App\Http\Controllers\admin\CustomPackageController;
 use App\Http\Controllers\admin\EmailMarketingController;
 use App\Http\Controllers\admin\GraphicController;
+use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\PackageController;
 use App\Http\Controllers\admin\PhpLaravelController;
 use App\Http\Controllers\admin\PpcController;
@@ -67,7 +68,7 @@ Route::post('/contact-us-store', [IndexController::class, 'contactUsStore'])->na
 Route::post('/add-to-cart', [IndexController::class, 'addtocart'])->name('add.to.cart');
 Route::post('/cart/update-quantity', [IndexController::class, 'updateQuantity'])->name('cart.updateQty');
 Route::post('/cart/remove', [IndexController::class, 'removeFromCart'])->name('cart.remove');
-Route::get('/cart/totals', [IndexController::class, 'cart_amount_totals']);
+Route::get('/cart/totals', [IndexController::class, 'cart_amount_totals'])->name('cart.totals');
 Route::get('/checkout', [IndexController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [IndexController::class, 'placeOrder'])->name('place.order');
 
@@ -110,6 +111,11 @@ Route::middleware('auth')->group(function () {
 
     // ----------------------------------contact us list-------------------------------------//
     Route::get('web-contact-us', [ContactUsController::class, 'contact_us'])->name('contact.us.list');
+
+    // ----------------------------------orders list-------------------------------------//
+    Route::get('web-orders', [OrdersController::class, 'ordersList'])->name('orders.list');
+    Route::get('orderDetail/{id}', [OrdersController::class, 'orderDetails'])->name('order.details');
+
 
 
       //---------------------------------Blog-----------------------------------------//

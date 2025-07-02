@@ -222,7 +222,7 @@
                 @endforeach
             @endif
             <div class="cart-footer">
-                <a href="{{ route('/') }}"><button  class="btn_theme">CONTINUE SHOPPING</button></a>
+                <a href="{{ route('/') }}"><button class="btn_theme">CONTINUE SHOPPING</button></a>
             </div>
         </div>
     </section>
@@ -257,7 +257,7 @@
                         </tr>
                     </table>
 
-                    <form action="{{route('checkout')}}" method="get">
+                    <form action="{{ route('checkout') }}" method="get">
                         @csrf
                         <button type="submit" class="btn_theme btn-checkout ">PROCEED TO CHECKOUT</button>
                     </form>
@@ -277,7 +277,8 @@
                 const priceDisplay = itemElement.querySelector(".item-price");
 
                 function updateQuantity(newQty) {
-                    fetch("/cart/update-quantity", {
+                    fetch("{{ route('cart.updateQty') }}", {
+
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -319,7 +320,7 @@
             });
 
             function refreshCartTotals() {
-                fetch("/cart/totals")
+                fetch("{{ route('cart.totals') }}")
                     .then(res => res.json())
                     .then(data => {
                         if (data.subtotal && data.total) {

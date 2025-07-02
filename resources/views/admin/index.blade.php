@@ -92,6 +92,31 @@
                 </div>
             </div>
         </a>
+
+        <a href="{{ route('orders.list') }}">
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">Total Orders</p>
+                                <h4 class="my-1">
+                                    @php
+                                      $order =  App\Models\Order::get();
+
+                                    @endphp
+                                     {{$order->count();}}
+                                </h4>
+                            </div>
+                            <div class="widget-icon-large bg-gradient-purple text-white ms-auto">
+                           <i class="bi bi-journal-text me-2"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
         {{--  <div class="col">
             <div class="card radius-10">
                 <div class="card-body">

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
@@ -24,39 +24,51 @@
                             <h4 class="mb-0">Login</h4>
                         </div>
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
                             @endif
 
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+
                             <form action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" id="email" value="{{ old('email') }}"
-                                        placeholder="Enter Your Email" class="form-control" required>
+                                        placeholder="Enter Your Email"
+                                        class="form-control @error('email') is-invalid @enderror" required>
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group mt-3">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password"
-                                        placeholder="Enter Your Password" class="form-control" required>
+                                        placeholder="Enter Your Password"
+                                        class="form-control @error('password') is-invalid @enderror" required>
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group mt-4 d-flex justify-content-between align-items-center"
                                     style="float:inline-end">
-                                    <button type="submit" class="btn btn-primary"
+                                    <button type="submit" class="btn btn-primary w-100"
                                         style="margin-right:20px">Login</button>
-                                    <a href="{{ route('register-form') }}" {{-- class="text-decoration-none" --}}>Don't have an
-                                        account?</a>
+
                                 </div>
                             </form>
                         </div>
@@ -73,7 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
         integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous">
     </script>
-    
+
 
 </body>
 

@@ -73,6 +73,16 @@
                 </a>
             </li>
             <li class="menu-title">
+
+                <a class="nav-link {{ request()->routeIs(['orders.list']) ? 'active' : '' }}"
+                    style="{{ request()->routeIs(['orders.list']) ? 'color: #3461ff0; background-color:  rgba(52, 97, 255, 0.1)' : '' }}"
+                    href="{{ route('orders.list') }}">
+                    <div class="parent-icon"> <i class="bi bi-box-seam me-2"></i>
+                    </div>
+                    <div class="menu-title">Orders </div>
+                </a>
+            </li>
+            <li class="menu-title">
                 {{-- <a
                     class="nav-link {{ request()->routeIs(['blogs', 'create-blog', 'update-blog']) ? 'active' : '' }}"
                     href="{{ route('blogs') }}"> --}}

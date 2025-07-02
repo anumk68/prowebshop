@@ -57,7 +57,7 @@
                                 class="form-control @error('image') is-invalid @enderror">
                             @if (isset($blog) && $blog->image)
                                 <br>
-                                <img src="{{ asset('storage/' . $blog->image) }}" width="100" height="100"
+                                <img src="{{ asset('public/storage/' . $blog->image) }}" width="100" height="100"
                                     alt="Old Image">
                             @endif
                             @error('image')
@@ -99,7 +99,7 @@
                                 class="form-control @error('meta_image') is-invalid @enderror">
                             @if (isset($blog) && $blog->meta_image)
                                 <br>
-                                <img src="{{ asset('storage/' . $blog->meta_image) }}" width="100" height="100"
+                                <img src="{{ asset('public/storage/' . $blog->meta_image) }}" width="100" height="100"
                                     alt="Old Meta Image">
                             @endif
                             @error('meta_image')

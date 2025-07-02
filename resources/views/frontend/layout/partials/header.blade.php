@@ -13,6 +13,7 @@
     </div>
 @endif
 <style>
+
     .mini-cart-dropdown {
         position: absolute;
         right: 0;
