@@ -4,7 +4,10 @@
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h1>Graphic </h1>
+                    <h1>Graphic Designing Services</h1>
+                    <p>
+                        Make the menu button name also the same and change the slug as suggested.</p>
+
                 </div>
             </div>
         </div>
@@ -13,10 +16,10 @@
     <section class="pricing-section py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Inspiring Designs With Budget-Friendly Packages</h2>
-                <p>We can transform even the most unconventional concepts into sophisticated designs, extraordinary
-                    experiences,
-                    and memorable brands.</p>
+                <h2>Creative, Custom & Impactful Designs for Every Brand</h2>
+                <p>Enhance your brand identity with professional graphic design services—logos, social media creatives,
+                    brochures and more. Designed to engage, impress and deliver real visual impact.
+                </p>
             </div>
             <div class="row">
                 @foreach ($graphic as $design)
@@ -69,8 +72,7 @@
 
                             <div id="package" class="package-wrapper">
                                 @unless ($cartItem)
-                                    <form method="POST" action="{{ route('add.to.cart') }}"
-                                        class="d-flex align-items-center">
+                                    <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $design->id }}">
                                         <input type="hidden" name="quantity" value="1">
@@ -101,14 +103,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="content_custom_php">
-                        <h2><span class="linear_color">Email Marketing</span> & Bulk Sms</h2>
-                        <p>Boost your business with targeted Email Marketing and bulk SMS campaigns! With personalized
-                            messages, you
-                            can reach your audience instantly, increase engagement, and drive conversions. At Pro Web Shop,
-                            we create
-                            compelling email and SMS strategies to enhance brand awareness, generate leads, and maximize
-                            ROI. Connect
-                            with your customers effectively and grow your business today!</p>
+                        <h2>Professional Designs At ProWebShop That Build Stronger Brands</h2>
+                        <p>We deliver high-quality, custom graphic designs that reflect your brand's vision and connect with
+                            your audience. From eye-catching logos and engaging social media posts to corporate brochures
+                            and marketing materials, our creative team ensures every design is pixel-perfect and
+                            strategy-driven. Whether you’re launching a brand or refreshing your look, our designs help you
+                            stand out and leave a lasting impression.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -118,9 +119,11 @@
     <section class="feature_product services_feature_pro py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Featured Products</h2>
-                <p>Explore our top-rated digital solutions designed to enhance your business. From marketing services to web
-                    development, find everything you need in one place!
+                <h2>Featured Services</h2>
+                <p>Explore our best-in-class graphic design solutions crafted to elevate your brand’s identity. From visual
+                    storytelling to digital creatives, find everything you need to make a lasting impression — all in one
+                    place!
+
                 </p>
             </div>
             <div class="row">
@@ -130,10 +133,11 @@
                             <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
-                            <h3>Email Marketing & Bulk SMS</h3>
-                            <p>Boost customer engagement with powerful email marketing and bulk SMS solutions. Connect
-                                instantly, drive
-                                conversions, and enhance brand communication.
+                            <h4>Brand Identity & Logo Design</h4>
+                            <p>Establish a strong visual foundation with unique logo designs and cohesive brand identity
+                                kits. We create memorable visuals that reflect your brand’s values and leave a lasting
+                                impact on your audience.
+
                             </p>
 
                         </div>
@@ -145,10 +149,11 @@
                             <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
-                            <h3>Automated Messaging Solutions</h3>
-                            <p>Streamline your outreach with automated email and SMS campaigns. Deliver personalized
-                                messages at scale
-                                for higher response rates and improved customer retention.
+                            <h4>Social Media Creatives</h4>
+                            <p>Capture attention across platforms with custom-designed posts, banners, and ad creatives. Our
+                                designs are tailored to engage your audience, boost shares, and drive brand awareness across
+                                digital channels.
+
                             </p>
 
                         </div>
@@ -160,10 +165,11 @@
                             <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
-                            <h3>Targeted Marketing Campaigns</h3>
-                            <p>Reach the right audience with precision-targeted email and SMS marketing. Maximize engagement
-                                and sales
-                                with data-driven messaging strategies.
+                            <h4>Print & Marketing Collateral</h4>
+                            <p>From brochures and flyers to business cards and packaging — our print design services ensure
+                                every material looks polished, professional, and brand-consistent, helping you stand out in
+                                any market.
+
                             </p>
                         </div>
                     </div>
@@ -179,19 +185,22 @@
                 <div class="col-md-6">
                     <div class="card light-purple"
                         style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
-                        <h2>Maximize Engagement with Email Marketing & Bulk SMS</h2>
-                        <p>Reach your audience instantly with high-converting email and SMS campaigns. Boost customer
-                            interaction,
-                            drive sales, and enhance brand loyalty effortlessly.</p>
+                        <h3>Maximize Brand Impact with Stunning Graphic Designs</h3>
+
+                        <p>Attract and engage your audience with compelling graphic visuals crafted to tell your brand
+                            story. From logo creation to digital assets, we design with purpose to drive recognition, trust,
+                            and impact.
+                        </p>
 
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card light-pink" style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
-                        <h2>Boost Your Outreach with Email Marketing & Bulk SMS</h2>
-                        <p>Leverage powerful email and SMS campaigns to connect with your audience effectively. Drive
-                            conversions,
-                            increase engagement, and enhance brand visibility effortlessly!
+                    <div class="card light-pink"
+                        style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
+                        <h3>Boost Your Visual Identity with Custom Graphic Design</h3>
+                        <p>Empower your brand with creative and conversion-focused designs. Whether it’s for social media,
+                            print, or digital platforms, our professional graphics ensure consistency, clarity, and visual
+                            appeal across every touchpoint.
 
                         </p>
                     </div>

@@ -2,8 +2,8 @@
      <div class="footer-container">
          <div class="footer-section about">
              <img src="{{ asset('public/frontend/img/footer_logo_pro.png') }}" alt="ProWebShop Logo" class="logo">
-             <p>Lorem consultancy elit sed do eiusmod tempor inci didunt ut labore dolore magna aliqua sed do
-                 eiusmod.</p>
+             <p>ProWebShop offers expert digital marketing, web design, and web development services to boost your online presence and growth. Select your service plan today!
+</p>
              <div class="social-icons">
                  <a href="#"><i class="fab fa-facebook-f"></i></a>
                  <a href="#"><i class="fab fa-twitter"></i></a>

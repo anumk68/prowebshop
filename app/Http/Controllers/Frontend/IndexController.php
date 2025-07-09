@@ -92,6 +92,7 @@ class IndexController extends Controller
         return view('frontend.wordpress-website', compact('wordpress'));
     }
 
+
     public function graphic()
     {
         $graphic = Package::where('is_active', 1)->where('type', 8)->get();
