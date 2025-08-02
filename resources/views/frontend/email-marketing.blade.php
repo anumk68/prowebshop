@@ -1,10 +1,14 @@
 @extends('frontend.layout.app')
+@section('title', $meta_title->meta_value ?? 'Default Website Title')
+@section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
     <section class="banner_about_us py_8" style="background-image: url({{ asset('public/frontend/img/ppc_banner.png') }});">
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h1>Email Marketing </h1>
+                    <h1>Email Marketing Packages</h1>
+                    <p>Engage your audience and boost conversions with our result-driven, customizable Email Marketing Packages for every business size.
+                    </p>
                     <div class="banner_btn_services">
                         <a href="{{ route('contact.us') }}">
                             <button class="btn_theme">Book Free Consultation</button>
@@ -14,17 +18,16 @@
             </div>
         </div>
     </section>
-
     <section class="pricing-section py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Inspiring Designs With Budget-Friendly Packages</h2>
-                <p>We can transform even the most unconventional concepts into sophisticated designs, extraordinary
-                    experiences, and memorable brands.</p>
+                <h2>Transparent Email Marketing Packages Pricing for Every Business</h2>
+                <p>Affordable plans tailored to your marketing goals reach more, convert faster, and grow smarter with data-driven email campaigns.
+                </p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($emailMarkeitng as $email)
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
                             <img src="{{ asset('public/storage/' . $email->image) }}" alt="Starter Email & SMS Package">
                             <h3>{{ $email->title }}</h3>
@@ -33,14 +36,13 @@
                                 $firstAmount = $amounts[0] ?? '';
                                 $secondAmount = $amounts[1] ?? '';
                             @endphp
-
                             <p class="price">
+                                <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
-                            <p style="margin-left: 12px;"><strong>Ideal For:</strong> {{ $email->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $email->description) as $feature)
                                     @php
@@ -70,17 +72,16 @@
                                         ->first();
                                 }
                             @endphp
-
                             <div id="package" class="package-wrapper">
-                                @unless ($cartItem)
-                                    <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
+                              @unless ($cartItem)
+                                    <form method="POST" action="{{ route('add.to.cart') }}"
+                                        class="d-flex align-items-center">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $email->id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn_theme">Add To Cart</button>
                                     </form>
                                 @endunless
-
                                 @if ($cartItem)
                                     <button type="submit" class="btn_theme" disabled>Add To Cart</button>
                                 @endif
@@ -88,20 +89,18 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
     </section>
-
     <section class="custom_php_laravel py_8 pt-0">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 mb-4">
                     <div class="img_custom">
                         <img src="{{ asset('public/frontend/img/smo_about.webp') }}" alt="">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 mb-4">
                     <div class="content_custom_php">
                         <h2><span class="linear_color">Email Marketing</span> & Bulk Sms</h2>
                         <p>Boost your business with targeted Email Marketing and bulk SMS campaigns! With personalized
@@ -114,7 +113,6 @@
             </div>
         </div>
     </section>
-
     <section class="feature_product services_feature_pro py_8">
         <div class="container">
             <div class="pricing_heading">
@@ -123,11 +121,11 @@
                     development, find everything you need in one place!
                 </p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/Email-Marketing-&-Bulk-SMS.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Email Marketing & Bulk SMS</h3>
@@ -141,7 +139,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/Automated-Messaging-Solutions.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Automated Messaging Solutions</h3>
@@ -155,7 +153,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/Targeted-Marketing-Campaigns.png') }}" alt="">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Targeted Marketing Campaigns</h3>
@@ -169,20 +167,18 @@
             </div>
         </div>
     </section>
-
     <section class="earning_prowebshop py_8">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card light-purple"
                         style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Maximize Engagement with Email Marketing & Bulk SMS</h2>
                         <p>Reach your audience instantly with high-converting email and SMS campaigns. Boost customer
                             interaction, drive sales, and enhance brand loyalty effortlessly.</p>
-
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card light-pink" style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Boost Your Outreach with Email Marketing & Bulk SMS</h2>
                         <p>Leverage powerful email and SMS campaigns to connect with your audience effectively. Drive
@@ -194,16 +190,13 @@
             </div>
         </div>
     </section>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add to Cart AJAX
             document.querySelectorAll('.add-to-cart-form').forEach(form => {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const formData = new FormData(form);
                     const packageId = form.dataset.packageId;
-
                     fetch("{{ route('add.to.cart') }}", {
                             method: 'POST',
                             headers: {
@@ -215,7 +208,6 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
-                                // Replace the "Add to Cart" form with + / - UI
                                 const wrapper = document.querySelector(`#package-${packageId}`);
                                 wrapper.innerHTML = `
                         <div class="btn_pricing_cards d-flex align-items-center gap-2 qty-controls">
@@ -231,30 +223,24 @@
                 });
             });
         });
-
-
         function incrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
             let qty = parseInt(input.value);
             const packageId = wrapper.id.replace('package-', '');
-
             qty++;
             updateCartQty(packageId, qty, input);
         }
-
         function decrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
             let qty = parseInt(input.value);
             const packageId = wrapper.id.replace('package-', '');
-
             if (qty > 1) {
                 qty--;
                 updateCartQty(packageId, qty, input);
             }
         }
-
         function updateCartQty(packageId, qty, inputEl) {
             fetch("{{ route('cart.updateQty') }}", {
                     method: 'POST',

@@ -13,7 +13,6 @@
     </div>
 @endif
 <style>
-
     .mini-cart-dropdown {
         position: absolute;
         right: 0;
@@ -133,19 +132,28 @@
 <div class="top_header_main">
     <div class="container">
         <div class="top_header">
-            <div class="countdown">
-                Days :<span id="days">00</span>
-                Hour :<span id="hours">00</span>
-                Min :<span id="minutes">00</span>
-                Sec :<span id="seconds">00</span>
+            <div class="row align-items-center">
 
+                <div class="col-lg-5 col-md-12">
+                    <div class="countdown">
+                        Days :<span id="days">00</span>
+                        Hour :<span id="hours">00</span>
+                        Min :<span id="minutes">00</span>
+                        Sec :<span id="seconds">00</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <div class="text_top_header">
+                        <p>New Year Flash Sale Offer
+                            <span class="off_present">45% OFF</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+
+                    <div class="close-icon cross_top" onclick="closeHeader()">&times;</div>
+                </div>
             </div>
-            <div class="text_top_header">
-                <p>New Year Flash Sale Offer
-                    <span class="off_present">45% OFF</span>
-                </p>
-            </div>
-            <div class="close-icon" onclick="closeHeader()">&times;</div>
         </div>
     </div>
 </div>
@@ -154,56 +162,54 @@
     <nav>
         <div class="container">
             <div class="wrapper">
-                <!-- Left: Logo -->
                 <div class="logo">
                     <a href="{{ route('/') }}"><img src="{{ asset('public/frontend/img/prowebshop_logo_head.png') }}"
                             alt=""></a>
                 </div>
+                <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
                 <input type="radio" name="slider" id="menu-btn">
                 <input type="radio" name="slider" id="close-btn">
                 <ul class="nav-links">
                     <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-                    {{-- <li><a href="{{ route('/') }}" {{ request()->routeIs('/') ? 'active' : '' }}>Home</a></li> --}}
+                    <li class="d-block d-lg-none">
+                        <a href="{{ route('/') }}" {{ request()->routeIs('/') ? 'active' : '' }}>Home</a>
+                    </li>
                     <li><a href="{{ route('about') }}" {{ request()->routeIs('about') ? 'active' : '' }}>About Us</a>
                     </li>
                     <li>
                         <a href="#" class="desktop-item">Web Services <i class="fa-solid fa-plus"></i></a>
-                        <input type="checkbox" {{-- id="showDrop" --}} id="forAnyIssue">
-                        <label for="showDrop" class="mobile-item">Web Services</label>
+                        <input type="checkbox" id="webServicesDrop">
+                        <label for="webServicesDrop" class="mobile-item">Web Services <i class="fa-solid fa-plus"></i>
+                        </label>
+
                         <ul class="drop-menu">
-                            <li><a href="{{ route('php-laravel-website') }}"
-                                    {{ request()->routeIs('php-laravel-website') ? 'active' : '' }}>PHP Laravel
+                            <li><a href="{{ route('php-laravel-website') }}" {{ request()->routeIs('php-laravel-website') ? 'active' : '' }}>PHP Laravel
                                     Website</a></li>
-                            <li><a href="{{ route('react-java-website') }}"
-                                    {{ request()->routeIs('react-java-website') ? 'active' : '' }}>React – Java
+                            <li><a href="{{ route('react-java-website') }}" {{ request()->routeIs('react-java-website') ? 'active' : '' }}>React – Java
                                     Website</a></li>
-                            <li><a href="{{ route('shopify-development') }}"
-                                    {{ request()->routeIs('shopify-development') ? 'active' : '' }}>Shopify Website</a>
+                            <li><a href="{{ route('shopify-development') }}" {{ request()->routeIs('shopify-development') ? 'active' : '' }}>Shopify Website</a>
                             </li>
-                            <li><a href="{{ route('custom-website-development') }}"
-                                    {{ request()->routeIs('custom-website-development') ? 'active' : '' }}>Custom-development</a>
+                            <li><a href="{{ route('custom-website-development') }}" {{ request()->routeIs('custom-website-development') ? 'active' : '' }}>Custom-development</a>
                             </li>
-                            <li><a href="{{ route('webflow-development') }}"
-                                    {{ request()->routeIs('webflow-development') ? 'active' : '' }}>Webflow Website</a>
+                            <li><a href="{{ route('webflow-development') }}" {{ request()->routeIs('webflow-development') ? 'active' : '' }}>Webflow Website</a>
                             </li>
-                            <li><a href="{{ route('wix-website-development') }}"
-                                    {{ request()->routeIs('wix-webstie-development') ? 'active' : '' }}>Wix Website</a>
+                            <li><a href="{{ route('wix-website-development') }}" {{ request()->routeIs('wix-webstie-development') ? 'active' : '' }}>Wix Website</a>
                             </li>
-                            <li><a href="{{ route('wordpress-website-development') }}"
-                                    {{ request()->routeIs('wordpress-website-development') ? 'active' : '' }}>WordPress
+                            <li><a href="{{ route('wordpress-website-development') }}" {{ request()->routeIs('wordpress-website-development') ? 'active' : '' }}>WordPress
                                     Website</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="desktop-item">Digital Marketing <i class="fa-solid fa-plus"></i></a>
                         <input type="checkbox" id="showDrop">
-                        <label for="showDrop" class="mobile-item">Digital Marketing</label>
+                        <label for="showDrop" class="mobile-item">Digital Marketing <i class="fa-solid fa-plus"></i>
+                        </label>
                         <ul class="drop-menu">
                             <li><a href="{{ route('search-engine-optimization') }}">SEO Services</a></li>
                             <li><a href="{{ route('ppc-services') }}">PPC Services</a></li>
                             <li><a href="{{ route('smo-services') }}">SMO Services</a></li>
-                            <li><a href="{{ route('email-marketing-service') }}"><small>Email Marketing & Bulk
-                                        Sms</small></a></li>
+                            <li><a href="{{ route('email-marketing-service') }}">Email Marketing & Bulk
+                                    Sms</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ route('graphic-devlopment') }}">Graphic</a></li>
@@ -211,21 +217,40 @@
                 </ul>
                 <div class="icons">
                     @php
-                        $user = auth()->guard('userWeb')->user();
-                        $cartItem = null;
-                        $cartItems = null;
+                        use App\Models\Cart;
+                        use App\Models\Package;
 
+                        $user = auth()->guard('userWeb')->user();
+                        $cartItems = collect();
+                        $sessionCart = session()->get('cart', []);
+                        $sessionCartItems = collect($sessionCart)->map(function ($item) {
+                            $package = Package::find($item['package_id']);
+                            if ($package) {
+                                return (object) [
+                                    'quantity' => $item['quantity'],
+                                    'package' => (object) [
+                                        'title' => $package->title,
+                                        'amount' => $package->amount,
+                                        'image' => $package->image,
+                                    ],
+                                ];
+                            }
+                            return null;
+                        })->filter();
+                        $cartItems = $cartItems->concat($sessionCartItems);
                         if ($user) {
-                            $count_cart = App\Models\Cart::where('user_id', $user->id)->count();
-                            $cartItems = App\Models\Cart::where('user_id', $user->id)->get();
+                            $dbCartItems = Cart::where('user_id', $user->id)->with('package')->get();
+                            $cartItems = $cartItems->concat($dbCartItems);
                         }
+                        $count_cart = $cartItems->count();
                     @endphp
+
                     <a href="javascript:void(0);" class="cart-icon" id="cart-toggle">
                         <img src="{{ asset('public/frontend/img/cart.svg') }}" alt="">
                         <span id="cart-count" class="icons_zero">{{ $count_cart ?? 0}}</span>
                     </a>
                     <div class="mini-cart-dropdown" id="mini-cart" style="display: none;">
-                       @if (!empty($cartItems) && count($cartItems) > 0)
+                        @if (!empty($cartItems) && count($cartItems) > 0)
                             <ul class="mini-cart-items">
                                 @foreach ($cartItems as $cart)
                                     <li class="mini-cart-item">
@@ -259,9 +284,9 @@
 
                     @if (auth()->guard('userWeb')->check())
                         <div class="dropdown d-inline-block">
-                            <a href="#" class="user-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-user"></i> {{ ucfirst(auth()->guard('userWeb')->user()->name) }}
+                            <a href="#" class="user-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i><span>
+                                    {{ ucfirst(auth()->guard('userWeb')->user()->name) }}</span>
 
                             </a>
                             <ul class="dropdown-menu">
@@ -274,8 +299,8 @@
                             </ul>
                         </div>
                     @else
-                        <a href="{{ route('user.register') }}" class="user-icon">
-                            <i class="fas fa-user"></i> Create Account
+                        <a href="{{ route('user.login.get') }}" class="user-icon">
+                            <i class="fas fa-user"></i> <span>Create Account</span>
                         </a>
                     @endif
                 </div>
@@ -285,7 +310,7 @@
     </nav>
 </header>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const toastEl = document.getElementById('sessionToast');
         if (toastEl) {
             const toast = new bootstrap.Toast(toastEl, {
@@ -294,21 +319,22 @@
             toast.show();
         }
     });
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const cartToggle = document.getElementById("cart-toggle");
         const miniCart = document.getElementById("mini-cart");
 
-        cartToggle.addEventListener("click", function(e) {
+        cartToggle.addEventListener("click", function (e) {
             e.stopPropagation();
             miniCart.style.display = miniCart.style.display === "block" ? "none" : "block";
         });
 
-        document.addEventListener("click", function() {
+        document.addEventListener("click", function () {
             miniCart.style.display = "none";
         });
 
-        miniCart.addEventListener("click", function(e) {
+        miniCart.addEventListener("click", function (e) {
             e.stopPropagation();
         });
     });
+
 </script>

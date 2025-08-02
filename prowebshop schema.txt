@@ -1,0 +1,76 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pro Web Shop Homepage",
+    "url": "https://prowebshop.online/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pro Web Shop",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://prowebshop.online/public/frontend/img/prowebshop_logo_head.png"
+      }
+    },
+    "hasPart": [
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/about-us"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/laravel-php-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/java-react-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/shopify-development-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/custom-website-development-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/affordable-webflow-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/wix-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/wordpress-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/affordable-seo-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/ppc-advertising-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/best-smo-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/email-marketing-packages"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/packages-for-graphic-design"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/contact-us"
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://prowebshop.online/blogs"
+      }
+</script>

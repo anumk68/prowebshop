@@ -47,19 +47,19 @@ Route::post('/user-logout', [FrontendAuthController::class, 'user_logout'])->nam
 
 // ---------------------------- Website routes--------------------- //
 Route::get('/', [IndexController::class, 'index'])->name('/');
-Route::get('/about', [IndexController::class, 'about'])->name('about');
-Route::get('/php-laravel-website', [IndexController::class, 'phpLaravel'])->name('php-laravel-website');
-Route::get('/react-java-website', [IndexController::class, 'reactJava'])->name('react-java-website');
-Route::get('/shopify-development', [IndexController::class, 'shopify'])->name('shopify-development');
-Route::get('/custom-website-development', [IndexController::class, 'customWebsite'])->name('custom-website-development');
-Route::get('/webflow-development', [IndexController::class, 'webFlow'])->name('webflow-development');
-Route::get('/wix-website-development', [IndexController::class, 'wixWebsite'])->name('wix-website-development');
-Route::get('/wordpress-website-development', [IndexController::class, 'wordpressWebsite'])->name('wordpress-website-development');
-Route::get('/graphic-devlopment', [IndexController::class, 'graphic'])->name('graphic-devlopment');
-Route::get('/search-engine-optimization', [IndexController::class, 'seo'])->name('search-engine-optimization');
-Route::get('/ppc-services', [IndexController::class, 'ppc'])->name('ppc-services');
-Route::get('/smo-services', [IndexController::class, 'smo'])->name('smo-services');
-Route::get('/email-marketing-service', [IndexController::class, 'emailMarketing'])->name('email-marketing-service');
+Route::get('/about-us', [IndexController::class, 'about'])->name('about');
+Route::get('/laravel-php-packages', [IndexController::class, 'phpLaravel'])->name('php-laravel-website');
+Route::get('/java-react-packages', [IndexController::class, 'reactJava'])->name('react-java-website');
+Route::get('/shopify-development-packages', [IndexController::class, 'shopify'])->name('shopify-development');
+Route::get('/custom-website-development-packages', [IndexController::class, 'customWebsite'])->name('custom-website-development');
+Route::get('/affordable-webflow-packages', [IndexController::class, 'webFlow'])->name('webflow-development');
+Route::get('/wix-packages', [IndexController::class, 'wixWebsite'])->name('wix-website-development');
+Route::get('/wordpress-packages', [IndexController::class, 'wordpressWebsite'])->name('wordpress-website-development');
+Route::get('/packages-for-graphic-design', [IndexController::class, 'graphic'])->name('graphic-devlopment');
+Route::get('/affordable-seo-packages', [IndexController::class, 'seo'])->name('search-engine-optimization');
+Route::get('/ppc-advertising-packages', [IndexController::class, 'ppc'])->name('ppc-services');
+Route::get('/best-smo-packages', [IndexController::class, 'smo'])->name('smo-services');
+Route::get('/email-marketing-packages', [IndexController::class, 'emailMarketing'])->name('email-marketing-service');
 Route::get('/blogs', [IndexController::class, 'blog'])->name('blogs');
 Route::get('/blog-detail/{slug}', [IndexController::class, 'blog_detail'])->name('blog-detail');
 Route::get('/cart', [IndexController::class, 'cart'])->name('cart');
@@ -71,6 +71,10 @@ Route::post('/cart/remove', [IndexController::class, 'removeFromCart'])->name('c
 Route::get('/cart/totals', [IndexController::class, 'cart_amount_totals'])->name('cart.totals');
 Route::get('/checkout', [IndexController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [IndexController::class, 'placeOrder'])->name('place.order');
+Route::get('/privacypolicy', [IndexController::class, 'privacypolicy'])->name('privacy.policy');
+Route::get('/refundpolicy', [IndexController::class, 'refundpolicy'])->name('refund.policy');
+Route::get('/termsandcondition', [IndexController::class, 'termsandcondition'])->name('termsand.condition');
+
 
 
 // ------------------------------admin routes-------------------------//
@@ -116,9 +120,7 @@ Route::middleware('auth')->group(function () {
     Route::get('web-orders', [OrdersController::class, 'ordersList'])->name('orders.list');
     Route::get('orderDetail/{id}', [OrdersController::class, 'orderDetails'])->name('order.details');
 
-
-
-      //---------------------------------Blog-----------------------------------------//
+    //---------------------------------Blog-----------------------------------------//
     Route::get('blog', [BlogController::class, 'index'])->name('blogss');
     Route::get('/create/blog/{id?}', [BlogController::class, 'create'])->name('create-blog');
     Route::post('/save/blog', [BlogController::class, 'save'])->name('save-blog');
@@ -216,6 +218,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/save/emailMarketing-package', [EmailMarketingController::class, 'save'])->name('save-emailMarketing');
     Route::put('/update/emailMarketing-package/{id}', [EmailMarketingController::class, 'save'])->name('update-emailMarketing');
     Route::delete('/updateStatus/emailMarketing-package/{id}', [EmailMarketingController::class, 'updateStatus'])->name('updateStatus-emailMarketing');
-
 
 });

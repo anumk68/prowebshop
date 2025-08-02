@@ -1,8 +1,5 @@
 @extends('frontend.layout.app')
-
 @section('content')
-
-
 <section class="banner_about_us py_8" style="background-image: url({{asset('frontend/img/pro_about_banners.png')}});">
     <div class="container">
         <div class="row">
@@ -12,8 +9,6 @@
         </div>
     </div>
 </section>
-
-
 <section class="single_product_one py_8">
     <div class="container">
         <div class="row">
@@ -29,34 +24,28 @@
                     <p class="special-price">Special Price</p>
                     <p class="price">₹279 <span class="old-price">₹1,599</span> <span class="discount">82% off</span></p>
                     <p class="rating">⭐ 3.9 | 6,087 ratings and 204 reviews</p>
-
                     <div class="size-section">
                         <p>Packages</p>
                         <div class="size-options">
                             <button>PHP</button>
                             <button>Laravel</button>
                             <button>React</button>
-
                         </div>
                     </div>
-
                     <div class="size-section">
                         <p>Packages</p>
                         <div class="size-options">
                             <button>Startup</button>
                             <button>Basic</button>
                             <button>Corporate</button>
-
                         </div>
                     </div>
-
                     <div class="offers">
                         <p>  <img src="{{ asset('frontend/img/icon_product_mini.webp')}}" alt=""><b> Offer</b> 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</p>
                         <p><img src="{{ asset('frontend/img/icon_product_mini.webp')}}" alt=""><b> Offer</b> 10% off up to ₹1,250 on HDFC Bank Credit Card Transactions</p>
                         <p><img src="{{ asset('frontend/img/icon_product_mini.webp')}}" alt=""><b> Offer</b> 10% off up to ₹1,500 on HDFC Bank Credit Card EMI Transactions</p>
                         <p><img src="{{ asset('frontend/img/icon_product_mini.webp')}}" alt=""><b> Offer</b> Buy 2 or more items save ₹20</p>
                     </div>
-
                     <div class="seller_product_mini">
                         <div class="highlight_ram">
                             <div class="highlight_column">
@@ -69,7 +58,6 @@
                                     <li>7s Gen3 Processor</li>
                                 </ul>
                             </div>
-
                             <div class="highlight_column">
                                 <h3>Easy Payment Options</h3>
                                 <ul>
@@ -81,8 +69,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="seller-info">
                         <h3>Seller</h3>
                         <a href="#">IndiFlashMart</a> <span class="rating">3.9 ★</span>
@@ -95,7 +81,6 @@
                     <div class="delivery">
                         <div class="product-description">
                             <h2>Product Description</h2>
-
                           <div class="row align-items-center mb-4">
                             <div class="col-md-8">
                                 <div class="feature">
@@ -133,10 +118,8 @@
                     <div class="header">
                         <h2>Ratings & Reviews</h2>
                         <span class="rating">3.9 ★</span>
-                        <!-- <span class="total-ratings">6,087 ratings and 204 reviews</span> -->
                         <button class="btn_theme"><a href="#">Add to cart</a></button>
                     </div>
-
                     <div class="reviews">
                         <div class="review">
                             <span class="stars">4 ★</span>
@@ -160,101 +143,17 @@
                                             <div class="item">
                                                 <img src="{{ asset('frontend/img/card_image.jpg')}}" alt="Product 1">
                                             </div>
-
                                         </div>
                                 </div>
                              </section>
                         </div>
-
                     </div>
-
                     <a href="#" class="all-reviews">All 204 reviews →</a>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-
-<!--
-<section class="single_product_slider py_8 pt-0">
-    <div class="container">
-        <div class="slider-container">
-            <div class="owl-carousel single_product_item owl-theme">
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/card_image.jpg" alt="Product 1">
-                    <div class="under_single_product">
-                        <h4>What’s Included in the WordPress Startup Package?</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aspernatur qui. Assumenda quaerat,</p>
-                        <div class="sigle_product_btn">
-                            <button class="btn_theme"><a href="#">Add to Cart</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
- </section> -->
-
 <section class="proweb_counter py_8">
     <div class="container">
         <div class="heading_counter">
@@ -277,7 +176,6 @@
                <h1 class="count" data-number="1018" ></h1>
                <h3 class="text">happy clients</h3>
             </div>
-
           </div>
     </div>
 </section>

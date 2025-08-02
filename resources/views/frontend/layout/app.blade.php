@@ -5,6 +5,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msvalidate.01" content="AD239323EFB8DC44409F91CA2CFBC25E" />
+
+    <title>@yield('title', 'Default Website Title')</title>
+    <meta name="description" content="@yield('description', 'Default description here')">
+    <meta name="keywords" content="@yield('keywords', 'default, keywords, here')">
+
+    <meta name="google-site-verification" content="oNz-ucItxFzEpPljI5sHxl4B8a4kDNmAa6jDx4Zeonw" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -26,7 +33,17 @@
     {{-- Favicon --}}
     <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/img/prowebshop_logo_head.png') }}">
 
-    <title>Prowebshop - {{ Route::currentRouteName() }}</title>
+    <!-- <title>Prowebshop - {{ Route::currentRouteName() }}</title> -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KDVENFDQLH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KDVENFDQLH');
+    </script>
+
 </head>
 
 <body>
@@ -40,7 +57,7 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -56,9 +73,11 @@
     <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+
+
     <script>
         document.querySelectorAll('.dropdown > a').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 e.preventDefault();
                 let submenu = this.nextElementSibling;
                 submenu.classList.toggle('active');
@@ -101,7 +120,7 @@
         startCountdown(5 * 24 * 60 * 60); // Example: 5 days countdown
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             let navLinks = document.querySelectorAll(".nav-links li a");
             let currentLocation = window.location.href;
 
@@ -125,7 +144,7 @@
                 0: {
                     items: 1
                 },
-                600: {
+                500: {
                     items: 2
                 },
                 1000: {
@@ -135,7 +154,7 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".hero_banners").owlCarousel({
                 items: 1,
                 loop: true,
@@ -148,6 +167,42 @@
             });
         });
     </script>
+    <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    @if (session('already_exists'))
+        <script>
+            if (confirm("This package is already in your cart. Do you want to add another one?")) {
+                fetch("{{ route('add.to.cart') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        package_id: "{{ session('already_exists') }}",
+                        quantity: "{{ session('quantity') }}",
+                        force_add: true
+                    })
+                }).then(() => window.location.reload());
+            }
+        </script>
+    @endif
+
 </body>
 
 </html>

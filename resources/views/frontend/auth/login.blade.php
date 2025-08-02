@@ -1,106 +1,59 @@
 @extends('frontend.layout.app')
-
 @section('content')
 <style>
-
-
          section.login_form_main .login-container {
             width: 100%;
             max-width: 360px;
             margin: auto;
         }
-
         section.login_form_main .login-container h2 {
             color: #333;
             margin-bottom: 20px;
             font-size: 30px;
         }
-
         section.login_form_main {
             padding: 80px 0;
             text-align: center;
         }
-
         form input[type="email"],
-
         form input[type="password"] {
-
             width: 100%;
-
             padding: 12px;
-
             margin-bottom: 15px;
-
             border: 1px solid #ccc;
-
             background-color: #eef3ff;
-
             border-radius: 2px;
-
             font-size: 15px;
-
         }
-
         section.login_form_main .remember-me {
-
             display: flex;
-
             align-items: center;
-
             margin-bottom: 20px;
-
         }
-
         section.login_form_main .remember-me input[type="checkbox"] {
-
             margin-right: 8px;
-
         }
-
         form button {
-
             width: 100%;
-
             padding: 12px;
-
             background-color: #0097e6;
-
             color: #fff;
-
             font-weight: bold;
-
             border: none;
-
             border-radius: 3px;
-
             cursor: pointer;
-
         }
-
-
-
         section.login_form_main .create-account {
-
             margin-top: 15px;
-
             font-size: 14px;
-
             color: #555;
-
         }
-
         section.login_form_main .create-account a {
-
             color: #007bff;
-
             text-decoration: none;
-
         }
-
         section.login_form_main .create-account a:hover {
-
             text-decoration: underline;
-
         }
         section.login_form_main .btn-login {
             color: #fff;
@@ -110,7 +63,6 @@
             font-weight: bold;
             cursor: pointer;
         }
-
 </style>
     <section class="login_form_main">
         <div class="login-container">

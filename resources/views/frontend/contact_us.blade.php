@@ -1,5 +1,6 @@
 @extends('frontend.layout.app')
-
+@section('title', $meta_title->meta_value ?? 'Default Website Title')
+@section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
     {{-- Banner --}}
     <section class="banner_about_us py_8"
@@ -7,14 +8,13 @@
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h2>Contact Us</h2>
-                    {{-- <p>ProWebShop is dedicated to delivering innovative digital solutions that empower businesses to excel in the online marketplace.</p> --}}
+                    <h1>Contact Us</h1>
+                    {{-- <p>ProWebShop is dedicated to delivering innovative digital solutions that empower businesses to
+                        excel in the online marketplace.</p> --}}
                 </div>
             </div>
         </div>
     </section>
-
-    {{-- Contact Section --}}
     <section class="py-5">
         <div class="container">
             <div class="row g-4">
@@ -25,73 +25,64 @@
                         <span class="d-block">Whether you need web design, SEO, e-commerce setup, or general assistance, our
                             team is ready to help.</span>
                     </p>
-
                     <div class="d-flex align-items-center gap-3 mt-3">
                         <div class="bg-light rounded-circle p-2">
-                            <i class="fas fa-envelope text-primary fs-5"></i>
+                            <i class="fas fa-envelope fs-5" style="color:#6d39f2"></i>
                         </div>
                         <a href="mailto:contact@prowebshop.online" class="text-dark text-decoration-none">
                             info@prowebshop.online
                         </a>
                     </div>
-
                     <div class="d-flex align-items-center gap-3 mt-3">
                         <div class="bg-light rounded-circle p-2">
-                            <i class="fas fa-phone-alt text-primary fs-5"></i>
+                            <i class="fas fa-phone-alt fs-5" style="color:#6d39f2"></i>
                         </div>
                         <a href="tel:+18887684709" class="text-dark text-decoration-none">
                             +91 23456798
                         </a>
                     </div>
-
                     <div class="d-flex align-items-start gap-3 mt-3">
                         <div class="bg-light rounded-circle p-2">
-                            <i class="fas fa-map-marker-alt text-primary fs-5"></i>
+                            <i class="fas fa-map-marker-alt fs-5"style="color:#6d39f2"></i>
                         </div>
                         <p class="mb-0 text-dark">C-177A, Uttam Towers, Phase 8B, Industrial Area, Sector 74, <br>Sahibzada
                             Ajit Singh Nagar, Punjab 160074</p>
                     </div>
                 </div>
-
                 <div class="col-lg-6">
-                    <div class="card p-4 shadow-sm">
+                    <div class="card contact_card p-4 shadow-sm">
                         <form class="needs-validation" novalidate action="{{ route('contact.usStore') }}" method="POST">
+                                <h2><span class="linear_color">Contact With Us</span></h2>
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="name" class="form-label">Name <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" id="name" value="{{ old('name') }}"
-                                        placeholder="Enter Your Name" required >
+                                    <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                        id="name" value="{{ old('name') }}" placeholder="Enter Your Name" required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone Number <span
                                             class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                        name="phone" id="phone" placeholder="Phone Number" required pattern="\d{10}"
-                                        maxlength="10" value="{{ old('phone') }}" title="Enter a valid 10-digit number">
+                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                        id="phone" placeholder="Phone Number" required pattern="\d{10}" maxlength="10"
+                                        value="{{ old('phone') }}" title="Enter a valid 10-digit number">
                                     @error('phone')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="email" class="form-label">Email <span
-                                            class="text-danger">*</span></label>
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" id="email" placeholder="Email Address" required
                                         value="{{ old('email') }}">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                                 <div class="col-md-6">
                                     <label for="services" class="form-label">Services <span
@@ -101,19 +92,15 @@
                                         <option value="" disabled {{ old('services') ? '' : 'selected' }}>Select a
                                             service</option>
                                         @foreach ($services_type as $type)
-                                            <option value="{{ $type->type }}"
-                                                {{ old('services') == $type->type ? 'selected' : '' }}>{{ $type->type }}
+                                            <option value="{{ $type->type }}" {{ old('services') == $type->type ? 'selected' : '' }}>{{ $type->type }}
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('services')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                             </div>
-
-
                             <button type="submit" class="btn_theme w-100">SUBMIT FORM</button>
                         </form>
                     </div>
@@ -121,7 +108,6 @@
             </div>
         </div>
     </section>
-
     <section class="py-4">
         <div class="container-fluid px-0">
             <iframe
@@ -130,13 +116,12 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
-
     <script>
-        (function() {
+        (function () {
             'use strict';
             const forms = document.querySelectorAll('.needs-validation');
-            Array.from(forms).forEach(function(form) {
-                form.addEventListener('submit', function(event) {
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
                     if (!form.checkValidity()) {
                         event.preventDefault();
                         event.stopPropagation();

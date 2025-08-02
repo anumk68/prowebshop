@@ -1,48 +1,48 @@
 @extends('frontend.layout.app')
-
+@section('title', $meta_title->meta_value ?? 'Default Website Title')
+@section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
     <section class="banner_about_us py_8"
         style="background-image: url({{ asset('public/frontend/img/custom_devlopment_banner.png') }});">
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h1>Custom-development Services</h1>
-                    <p>Elevate your brand with high-performance WordPress solutions. At ProWebShop, we craft responsive,
-                        SEO-optimized websites that enhance user experience, drive engagement, and help your business thrive
-                        online.
+                    <h1>Custom Website Development Packages</h1>
+                    <p>Get tailor-made website solutions built to match your unique business needs. Our custom development
+                        packages ensure high performance, seamless user experience, and full scalability for long-term
+                        online success.
                     </p>
                     <div class="banner_btn_services">
                         <a href="{{route('contact.us')}}">
-                        <button class="btn_theme">Book Free Consultation</button>
+                            <button class="btn_theme">Book Free Consultation</button>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <section class="pricing-section py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>Inspiring Designs With Budget-Friendly Packages</h2>
-                <p>At Pro Web Shop, we create stunning, professional designs tailored to your brand—without breaking the bank. Get creative excellence and affordability in one perfect package.
-</p>
+                <h2>Custom Website Development Packages</h2>
+                <p>Get tailor-made website solutions built to match your unique business needs. Our custom development
+                    packages ensure high performance, seamless user experience, and full scalability for long-term online
+                    success.
+                </p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($customDevelopment as $custom)
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
                             <img src="{{ asset('public/storage/' . $custom->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $custom->title }}</h3>
-                            <p class="price">{{ $custom->price }}</p>
                             @php
                                 $amounts = explode(' ', $custom->amount);
                                 $firstAmount = $amounts[0] ?? '';
                                 $secondAmount = $amounts[1] ?? '';
                             @endphp
-
                             <p class="price">
-                                <span>Cost:</span>
+                                <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
                                     <del>{{ $secondAmount }}</del>
@@ -60,11 +60,14 @@
                                         );
                                     @endphp
                                     @if ($cleanFeature !== '')
-                                        <li><i class="fa-solid fa-check"></i> {{ $cleanFeature }}</li>
+                                        <li style="display: flex; align-items: center;">
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
                                 @endforeach
                             </ul>
-                             @php
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
 
@@ -74,42 +77,34 @@
                                         ->first();
                                 }
                             @endphp
-
                             <div id="package" class="package-wrapper">
                                 @unless ($cartItem)
-                                    <form method="POST" action="{{ route('add.to.cart') }}"
-                                        class="d-flex align-items-center">
+                                    <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $custom->id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn_theme">Add To Cart</button>
                                     </form>
                                 @endunless
-
                                 @if ($cartItem)
                                     <button type="submit" class="btn_theme" disabled>Add To Cart</button>
                                 @endif
                             </div>
-
                         </div>
-
                     </div>
                 @endforeach
-
             </div>
         </div>
     </section>
-
-
     <section class="custom_php_laravel py_8 pt-0">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="img_custom">
-                        <img src="{{ asset('public/frontend/img/custom_devlopment_about.jpg') }}" alt="">
+                        <img src="{{ asset('public/frontend/img/custom_devlopment_about.jpg') }}" alt="custom development services">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="content_custom_php">
                         <h2>Leading <span class="linear_color">Custom-development</span> Company</h2>
                         <p>At ProWebShop we specialize in creating feature-rich, modern, and highly responsive WordPress
@@ -120,13 +115,11 @@
                             drive
                             engagement.
                         </p>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <section class="feature_product services_feature_pro py_8">
         <div class="container">
             <div class="pricing_heading">
@@ -136,11 +129,11 @@
                     solutions tailored to meet your unique needs and drive success.
                 </p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/web_services/Website-Design-&-Development.png') }}" alt="custom website development ">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Website Design & Development</h3>
@@ -150,14 +143,14 @@
                                 boost
                                 conversions.
                             </p>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/web_services/Management-Systems-Development.png') }}"
+                                alt="budget friendly packages ">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Management Systems Development</h3>
@@ -166,14 +159,14 @@
                                 and workflow management, we create tailored systems that enhance efficiency and
                                 productivity.
                             </p>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/web_services/Digital-Marketing-&-Video-Editing.png') }}"
+                                alt="custom development services">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Digital Marketing & Video Editing</h3>
@@ -186,16 +179,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-
     <section class="earning_prowebshop py_8">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card light-purple"
                         style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Transform Your Online Presence</h2>
@@ -207,8 +197,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card light-pink" style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
+                <div class="col-md-6 mb-4">
+                    <div class="card light-pink"
+                        style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Maximize Your Growth with Our Expertise</h2>
                         <p>Whether you're launching a new site or optimizing an existing one, our WordPress development
                             experts ensure
@@ -218,35 +209,31 @@
             </div>
         </div>
     </section>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add to Cart AJAX
+        document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.add-to-cart-form').forEach(form => {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', function (e) {
                     e.preventDefault();
                     const formData = new FormData(form);
                     const packageId = form.dataset.packageId;
-
                     fetch("{{ route('add.to.cart') }}", {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': formData.get('_token'),
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        })
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': formData.get('_token'),
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    })
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
-                                // Replace the "Add to Cart" form with + / - UI
                                 const wrapper = document.querySelector(`#package-${packageId}`);
                                 wrapper.innerHTML = `
-                        <div class="btn_pricing_cards d-flex align-items-center gap-2 qty-controls">
-                            <button type="button" class="btn btn-secondary" onclick="decrementQty(this)">−</button>
-                            <input type="number" class="qty-input form-control w-25 text-center" value="1" readonly>
-                            <button type="button" class="btn btn-secondary" onclick="incrementQty(this)">+</button>
-                        </div>`;
+                            <div class="btn_pricing_cards d-flex align-items-center gap-2 qty-controls">
+                                <button type="button" class="btn btn-secondary" onclick="decrementQty(this)">−</button>
+                                <input type="number" class="qty-input form-control w-25 text-center" value="1" readonly>
+                                <button type="button" class="btn btn-secondary" onclick="incrementQty(this)">+</button>
+                            </div>`;
                             } else {
                                 alert(data.error || 'Something went wrong.');
                             }
@@ -255,43 +242,37 @@
                 });
             });
         });
-
-
         function incrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
             let qty = parseInt(input.value);
             const packageId = wrapper.id.replace('package-', '');
-
             qty++;
             updateCartQty(packageId, qty, input);
         }
-
         function decrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
             let qty = parseInt(input.value);
             const packageId = wrapper.id.replace('package-', '');
-
             if (qty > 1) {
                 qty--;
                 updateCartQty(packageId, qty, input);
             }
         }
-
         function updateCartQty(packageId, qty, inputEl) {
             fetch("{{ route('cart.updateQty') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        package_id: packageId,
-                        quantity: qty
-                    })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    package_id: packageId,
+                    quantity: qty
                 })
+            })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {

@@ -1,32 +1,25 @@
 @extends('frontend.layout.app')
-
 @section('content')
 <style>
-
   section.register_sec .form-container {
-
-            width: 100%;
+           width: 100%;
             max-width: 400px;
             margin: auto;
         }
-
         section.register_sec h2 {
             font-size: 22px;
             margin-bottom: 10px;
             font-weight: 600;
         }
-
         section.register_sec .subtext {
             font-size: 14px;
             color: #555;
             margin-bottom: 20px;
         }
-
         section.register_sec .subtext a {
             color: #007bff;
             text-decoration: none;
         }
-
         section.register_sec form input {
             width: 100%;
             padding: 12px 15px;
@@ -35,13 +28,11 @@
             border-radius: 3px;
             font-size: 14px;
         }
-
         section.register_sec form input:focus {
             background-color: #e9f1ff;
             border-color: #007bff;
             outline: none;
         }
-
         section.register_sec .register-btn {
             width: 100%;
             padding: 12px;
@@ -53,13 +44,11 @@
             cursor: pointer;
             transition: background 0.3s ease;
         }
-
         section.register_sec .register-btn:hover {
             background-color: #007acc;
         }
           section.register_sec .btn-register {
             color: #fff;
-            /* padding: 12px; */
             width: 100%;
             border: none;
             border-radius: 4px;
@@ -100,7 +89,6 @@
                     @error('password')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-
                     <input type="password" name="confirm_password"
                         class="form-control @error('confirm_password') is-invalid @enderror"
                         placeholder="Confirm Password">

@@ -1,5 +1,4 @@
 @extends('frontend.layout.app')
-
 @section('content')
     <div class="banner-about tran5s wow fadeInUp blog_detail_banner"
         style="
@@ -48,5 +47,4 @@
             </div>
         </div>
     </section>
-
 @endsection

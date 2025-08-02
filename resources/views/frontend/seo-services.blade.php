@@ -1,15 +1,14 @@
 @extends('frontend.layout.app')
-
+@section('title', $meta_title->meta_value ?? 'Default Website Title')
+@section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
     <section class="banner_about_us py_8" style="background-image: url({{ asset('public/frontend/img/seo_banner.png') }});">
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h1>Search Engine Optimization Services</h1>
-                    {{-- <p>Elevate your brand with high-performance WordPress solutions. At ProWebShop, we craft responsive,
-                        SEO-optimized websites that enhance user experience, drive engagement, and help your business thrive
-                        online.
-                    </p> --}}
+                    <h1>Affordable SEO Packages</h1>
+                       <p>Drive more traffic, boost search rankings, and grow your business with our budget-friendly SEO packages tailored to your goals.
+                       </p> 
                     <div class="banner_btn_services">
                         <a href="{{ route('contact.us') }}">
                             <button class="btn_theme">Book Free Consultation</button>
@@ -19,37 +18,32 @@
             </div>
         </div>
     </section>
-
     <section class="pricing-section py_8">
         <div class="container">
             <div class="pricing_heading">
-                <h2>SEO Services</h2>
-                <p>Boost your website's visibility with Pro Web Shop's expert SEO services. We offer comprehensive on-page,
-                    off-page, and technical SEO strategies to enhance rankings, drive organic traffic, and effectively and
-                    sustainably grow your online presence.
+                <h2>SEO Prices Packages That Deliver Real Results</h2>
+                <p>Drive more traffic, boost search rankings and grow your business with our budget-friendly SEO packages tailored to your goals.
                 </p>
             </div>
-            <div class="row">
-
+            <div class="row justify-content-center">
                 @foreach ($seo as $seoss)
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
-                            <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="WordPress Corporate Package">
+                            <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="search engine optimization services
+                        ">
                             <h3>{{ $seoss->title }}</h3>
                             @php
                                 $amounts = explode(' ', $seoss->amount);
                                 $firstAmount = $amounts[0] ?? '';
                                 $secondAmount = $amounts[1] ?? '';
                             @endphp
-
                             <p class="price">
-
+                                <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
-                            <p style="margin-left: 12px;"><strong>Ideal For:</strong> {{ $seoss->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $seoss->description) as $feature)
                                     @php
@@ -72,17 +66,16 @@
                             @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
-
                                 if ($user) {
                                     $cartItem = App\Models\Cart::where('user_id', $user->id)
                                         ->where('package_id', $seoss->id)
                                         ->first();
                                 }
                             @endphp
-
                             <div id="package" class="package-wrapper">
                                 @unless ($cartItem)
-                                    <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
+                                    <form method="POST" action="{{ route('add.to.cart') }}"
+                                        class="d-flex align-items-center">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $seoss->id }}">
                                         <input type="hidden" name="quantity" value="1">
@@ -100,16 +93,15 @@
             </div>
         </div>
     </section>
-
     <section class="custom_php_laravel py_8 pt-0">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 mb-4">
                     <div class="img_custom">
-                        <img src="{{ asset('public/frontend/img/seo_about.webp') }}" alt="">
+                        <img src="{{ asset('public/frontend/img/seo_about.webp') }}" alt="seo services ">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 mb-4">
                     <div class="content_custom_php">
                         <h2> Best <span class="linear_color">SEO Services</span></h2>
                         <p>Boost your website’s ranking and attract the right audience with our powerful SEO services. We
@@ -122,7 +114,6 @@
             </div>
         </div>
     </section>
-
     <section class="feature_product services_feature_pro py_8">
         <div class="container">
             <div class="pricing_heading">
@@ -131,11 +122,12 @@
                     Explore now!
                 </p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/On-Page-SEO-Optimization.png') }}" alt="seo packages
+                        ">
                         </div>
                         <div class="txt_feture_product">
                             <h3>On-Page SEO Optimization</h3>
@@ -149,21 +141,22 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/Off-Page-SEO-&-Link-Building.png') }}" alt="seo prices packages
+                                ">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Off-Page SEO & Link Building</h3>
                             <p>Boost domain authority with high-quality backlinks and strategic off-page SEO. Strengthen
                                 your online presence with proven techniques.
                             </p>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/digital_service_3.png') }}" alt="">
+                            <img src="{{ asset('public/frontend/img/digital_marketing_img/Local-&-Technical-SEO.png') }}" alt="affordable seo packages
+                        ">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Local & Technical SEO</h3>
@@ -173,15 +166,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
     <section class="earning_prowebshop py_8">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card light-purple"
                         style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Maximize Your Website’s Potential</h2>
@@ -191,7 +182,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card light-pink"
                         style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>Earn Up to 40% Commission Effortlessly</h2>
@@ -202,16 +193,13 @@
             </div>
         </div>
     </section>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add to Cart AJAX
             document.querySelectorAll('.add-to-cart-form').forEach(form => {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const formData = new FormData(form);
                     const packageId = form.dataset.packageId;
-
                     fetch("{{ route('add.to.cart') }}", {
                             method: 'POST',
                             headers: {
@@ -223,7 +211,6 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
-                                // Replace the "Add to Cart" form with + / - UI
                                 const wrapper = document.querySelector(`#package-${packageId}`);
                                 wrapper.innerHTML = `
                         <div class="btn_pricing_cards d-flex align-items-center gap-2 qty-controls">
@@ -239,8 +226,6 @@
                 });
             });
         });
-
-
         function incrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
@@ -250,7 +235,6 @@
             qty++;
             updateCartQty(packageId, qty, input);
         }
-
         function decrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
