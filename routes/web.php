@@ -74,6 +74,9 @@ Route::post('/place-order', [IndexController::class, 'placeOrder'])->name('place
 Route::get('/privacypolicy', [IndexController::class, 'privacypolicy'])->name('privacy.policy');
 Route::get('/refundpolicy', [IndexController::class, 'refundpolicy'])->name('refund.policy');
 Route::get('/termsandcondition', [IndexController::class, 'termsandcondition'])->name('termsand.condition');
+Route::get('/singleproduct', [IndexController::class, 'singleproduct'])->name('single.product');
+Route::get('/productdetailmain', [IndexController::class, 'productdetailmain'])->name('productdetail.main');
+Route::get('/accountpage', [IndexController::class, 'accountpage'])->name('account.page');
 
 
 

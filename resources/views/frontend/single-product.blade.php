@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 @section('content')
-<section class="banner_about_us py_8" style="background-image: url({{asset('frontend/img/pro_about_banners.png')}});">
+<section class="banner_about_us py_8" style="background-image: url({{asset('public/frontend/img/about_banner.png')}});">
     <div class="container">
         <div class="row">
             <div class="text_about_us">

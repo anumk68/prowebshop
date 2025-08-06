@@ -37,9 +37,7 @@
                         <h4>Content Development</h4>
                         <p>- High-quality, SEO-optimized content to attract and retain customers.
                             With a team of industry experts, creative minds, and tech specialists, we are committed to delivering results-driven solutions that help businesses thrive in today’s digital landscape.</p>
-                           {{-- <div class="btn_wh_we_are">
-                            <button class="btn_theme"><a href="#">Get Started</a></button>
-                           </div> --}}
+                         
                     </div>
                 </div>
             </div>

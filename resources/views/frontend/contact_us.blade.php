@@ -2,22 +2,19 @@
 @section('title', $meta_title->meta_value ?? 'Default Website Title')
 @section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
-    {{-- Banner --}}
     <section class="banner_about_us py_8"
         style="background-image: url({{ asset('public/frontend/img/pro_about_banners.png') }});">
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
                     <h1>Contact Us</h1>
-                    {{-- <p>ProWebShop is dedicated to delivering innovative digital solutions that empower businesses to
-                        excel in the online marketplace.</p> --}}
                 </div>
             </div>
         </div>
     </section>
-    <section class="py-5">
+    <section class="py_8">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 align-items-center">
                 <div class="col-lg-6">
                     <h2 class="fw-semibold text-dark fs-4">Contact Us for Pro Web Shop</h2>
                     <p class="text-dark">At <strong>Pro Web Shop</strong>, we’re here to provide you with reliable website
@@ -50,12 +47,12 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="card contact_card p-4 shadow-sm">
+                    <div class="card contact_card shadow-sm">
                         <form class="needs-validation" novalidate action="{{ route('contact.usStore') }}" method="POST">
                                 <h2><span class="linear_color">Contact With Us</span></h2>
                             @csrf
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                                         id="name" value="{{ old('name') }}" placeholder="Enter Your Name" required>
@@ -74,8 +71,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                            <div class="row mb-3 ">
+                                <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" id="email" placeholder="Email Address" required
@@ -101,7 +98,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn_theme w-100">SUBMIT FORM</button>
+                            <button type="submit" class="btn_theme w-100 btn_blog mt-3">SUBMIT FORM</button>
                         </form>
                     </div>
                 </div>

@@ -52,29 +52,11 @@
         @yield('content')
     </div>
     @include('frontend.layout.partials.footer')
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
-    -->
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-
-
     <script>
         document.querySelectorAll('.dropdown > a').forEach(item => {
             item.addEventListener('click', function (e) {
@@ -85,7 +67,6 @@
             });
         });
     </script>
-
     <script>
         function startCountdown(durationInSeconds) {
             let timer = durationInSeconds;
@@ -116,8 +97,7 @@
         function closeHeader() {
             document.querySelector('.top_header').style.display = 'none';
         }
-
-        startCountdown(5 * 24 * 60 * 60); // Example: 5 days countdown
+        startCountdown(5 * 24 * 60 * 60);
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -131,10 +111,9 @@
             });
         });
     </script>
-
     <script>
-        $('.logo_slides').trigger('destroy.owl.carousel'); // Destroy
-        $('.logo_slides').owlCarousel({ // Reinitialize
+        $('.logo_slides').trigger('destroy.owl.carousel');
+        $('.logo_slides').owlCarousel({ 
             loop: true,
             margin: 20,
             nav: false,
@@ -183,6 +162,56 @@
             });
         });
     </script>
+     <script>
+  $(document).ready(function () {
+    $('#blog-carousel').owlCarousel({
+      loop: true,
+      margin: 20,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true,
+      nav: true,
+      dots: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        576: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        992: {
+          items: 3
+        }
+      }
+    });
+  });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const counters = document.querySelectorAll('.counter');
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+
+                const increment = Math.ceil(target / 100);
+
+                if (count < target) {
+                    counter.innerText = count + increment;
+                    setTimeout(updateCount, 30); 
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCount();
+        });
+    });
+</script>
 
     @if (session('already_exists'))
         <script>
@@ -204,5 +233,4 @@
     @endif
 
 </body>
-
 </html>

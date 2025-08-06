@@ -257,7 +257,6 @@
                                         <div class="cart-thumb">
                                             <img src="{{ asset('public/storage/' . $cart->package->image) }}"
                                                 alt="{{ $cart->package->title }}">
-                                            {{-- <span class="cart-qty">{{ $cart->quantity }}x</span> --}}
                                         </div>
                                         <div class="cart-details">
                                             <div class="cart-title">{{ Str::limit($cart->package->title, 40) }}</div>

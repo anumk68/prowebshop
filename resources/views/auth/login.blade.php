@@ -66,7 +66,7 @@
 
                                 <div class="form-group mt-4 d-flex justify-content-between align-items-center"
                                     style="float:inline-end">
-                                    <button type="submit" class="btn btn-primary w-100"
+                                    <button type="submit" class="btn btn-primary w-100 "
                                         style="margin-right:20px">Login</button>
 
                                 </div>

@@ -18,7 +18,7 @@
                                     </p>
                                     <div class="btn_hero_btn">
                                         <a href="{{ route('contact.us') }}">
-                                            <button class="btn_theme">Contact Us</button>
+                                            <button class="btn_theme btn_blog">Contact Us</button>
                                         </a>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                     </p>
                                     <div class="btn_hero_btn">
                                         <a href="{{ route('contact.us') }}">
-                                            <button class="btn_theme">
+                                            <button class="btn_theme btn_blog">
                                                 Contact Us</button>
                                         </a>
                                     </div>
@@ -55,7 +55,7 @@
                             <div class="col-md-6">
                                 <div class="hero_banner_img">
                                     <img src="{{ asset('public/frontend/img/Loan-SuvidhaGIF (1).gif') }}" alt="best digital marketing services
-                                                                                                ">
+                                                                                                        ">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                         visitors into loyal customers effortlessly.</p>
                                     <div class="btn_hero_btn">
                                         <a href="{{ route('contact.us') }}">
-                                            <button class="btn_theme">Contact
+                                            <button class="btn_theme btn_blog">Contact
                                                 Us</button>
                                         </a>
                                     </div>
@@ -83,7 +83,7 @@
                             <div class="col-md-6">
                                 <div class="hero_banner_img">
                                     <img src="{{ asset('public/frontend/img/babycorngif (1).gif') }}" alt="digital marketing agency
-                                                                                                ">
+                                                                                                        ">
                                 </div>
                             </div>
                         </div>
@@ -251,7 +251,6 @@
                                 alt="best digital marketing services                                                                                                                                                                        ">
                             <h3>{{ $web->title }}</h3>
                             @php
-                                // Split the string by space
                                 $amounts = explode(' ', $web->amount);
                                 $firstAmount = $amounts[0] ?? '';
                                 $secondAmount = $amounts[1] ?? '';
@@ -301,135 +300,74 @@
                                     }
                                 }
                             @endphp
-                                    <div id="package-{{ $web->id }}" class="package-wrapper">
-                                        <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
-                                            @csrf
-                                            <input type="hidden" name="package_id" value="{{ $web->id }}">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button type="submit" class="btn_theme">
-                                                @if ($cartItem || $inSession)
-                                                    Add More
-                                                @else
-                                                    Add To Cart
-                                                @endif
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                @endforeach
-                    {{-- <div class="col-md-4">
-                        <div class="pricing-card">
-                            <img src="{{ asset('public/frontend/img/webflow22.png') }}" alt="Webflow Basic Package">
-                            <h3>Basic Package</h3>
-                            <p class="price"><span> Estimated Cost:</span> $290 <del>$500</del></p>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Includes Everything in Starter</li>
-                                <li><i class="fa-solid fa-check"></i> Webflow CMS with Dynamic Collections</li>
-                                <li><i class="fa-solid fa-check"></i> Custom UI/UX with Interactive Animations</li>
-                                <li><i class="fa-solid fa-check"></i> Up to 10 Pages with Modular Design</li>
-                                <li><i class="fa-solid fa-check"></i> E-Commerce Setup (Basic Storefront, Payment Integration)
-                                </li>
-                                <li><i class="fa-solid fa-check"></i> Advanced SEO (Schema Markup, Open Graph, Social Sharing
-                                    Tags)</li>
-                                <li><i class="fa-solid fa-check"></i> Blog/News Section with Easy Content Management</li>
-                                <li><i class="fa-solid fa-check"></i> Custom Contact & Multi-Step Forms with Zapier Integration
-                                </li>
-                                <li><i class="fa-solid fa-check"></i> CRM Integration (HubSpot, Salesforce, Zoho, etc.)</li>
-                                <li><i class="fa-solid fa-check"></i> Newsletter & Email Marketing Integration</li>
-                                <li><i class="fa-solid fa-check"></i> Performance Enhancements (Lazy Loading, Minified Code)
-                                </li>
-                                <li><i class="fa-solid fa-check"></i> Custom JavaScript & CSS Enhancements</li>
-                                <li><i class="fa-solid fa-check"></i> Cloudflare CDN & Security Hardening</li>
-                                <li><i class="fa-solid fa-check"></i> Automated Backups & Version Control</li>
-                                <li><i class="fa-solid fa-check"></i> Deployment Assistance & Webflow Hosting Setup</li>
-                                <li><i class="fa-solid fa-check"></i> 2 Months Free Support & Maintenance</li>
-                            </ul>
-                            <div class="btn_pricing_cards">
-                                <button class="btn_theme"><a href="#">Add to cart</a></button>
+                            <div id="package-{{ $web->id }}" class="package-wrapper">
+                                <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
+                                    @csrf
+                                    <input type="hidden" name="package_id" value="{{ $web->id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn_theme">
+                                        @if ($cartItem || $inSession)
+                                            Add More
+                                        @else
+                                            Add To Cart
+                                        @endif
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="pricing-card">
-                            <img src="{{ asset('public/frontend/img/webflow22.png') }}" alt="Webflow Corporate Package">
-                            <h3>Corporate Package</h3>
-                            <p class="price"><span> Estimated Cost:</span> $500 <del>$850</del></p>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Includes Everything in Basic</li>
-                                <li><i class="fa-solid fa-check"></i> Enterprise-Grade Webflow Development with Custom
-                                    Integrations</li>
-                                <li><i class="fa-solid fa-check"></i> Unlimited Pages & Multi-Language Support (i18n)</li>
-                                <li><i class="fa-solid fa-check"></i> Advanced Motion Graphics & Web Animations</li>
-                                <li><i class="fa-solid fa-check"></i> Custom Web Applications with API Integrations</li>
-                                <li><i class="fa-solid fa-check"></i> Headless CMS & External Data Source Integration</li>
-                                <li><i class="fa-solid fa-check"></i> E-Commerce with Advanced Filters & Custom Checkout</li>
-                                <li><i class="fa-solid fa-check"></i> AI-Powered Personalization & Chatbot Integration</li>
-                                <li><i class="fa-solid fa-check"></i> Custom Webflow Components & Plugins Development</li>
-                                <li><i class="fa-solid fa-check"></i> Real-Time Analytics Dashboards & A/B Testing</li>
-                                <li><i class="fa-solid fa-check"></i> Advanced Cybersecurity (DDoS, WAF)</li>
-                                <li><i class="fa-solid fa-check"></i> Custom API Development & Third-Party Integrations</li>
-                                <li><i class="fa-solid fa-check"></i> Enterprise CRM, ERP, Workflow Automation</li>
-                                <li><i class="fa-solid fa-check"></i> High-Traffic Optimization with Serverless Backend</li>
-                                <li><i class="fa-solid fa-check"></i> Dedicated Account Manager & 24/7 Priority Support</li>
-                                <li><i class="fa-solid fa-check"></i> 6 Months Free Support, Maintenance & Monitoring</li>
-                            </ul>
-                            <div class="btn_pricing_cards">
-                                <button class="btn_theme"><a href="#">Add to cart</a></button>
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">WordPress Website </span>Development Packages</h2>
-                    <p>Explore our custom WordPress website development packages designed for startups to enterprises. Get
-                        responsive, SEO-friendly, and scalable websites that align with your brand and boost your online
-                        presence.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($wordpress as $word)
+        </div>
+    </section>
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">WordPress Website </span>Development Packages</h2>
+                <p>Explore our custom WordPress website development packages designed for startups to enterprises. Get
+                    responsive, SEO-friendly, and scalable websites that align with your brand and boost your online
+                    presence.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($wordpress as $word)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
                             <img src="{{ asset('public/storage/' . $word->image) }}" alt="digital marketing agency">
                             <h3>{{ $word->title }}</h3>
                             @php
-                            $amounts = explode(' ', $word->amount);
-                            $firstAmount = $amounts[0] ?? '';
-                            $secondAmount = $amounts[1] ?? '';
+                                $amounts = explode(' ', $word->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
                             @endphp
                             <p class="price">
                                 <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
-                                <del>{{ $secondAmount }}</del>
+                                    <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
                             <p style="margin-left: 12px;">{{ $word->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $word->description) as $feature)
-                                @php
-                                $cleanFeature = trim(
-                                preg_replace(
-                                '/\s+/',
-                                ' ',
-                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                ),
-                                );
-                                @endphp
-                                @if ($cleanFeature !== '')
-                                <li>
-                                    <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                    <span style="color: black;">{{ $cleanFeature }}</span>
-                                </li>
-                                @endif
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
-                             @php
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -464,58 +402,58 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">Custom Website</span> Development Packages</h2>
-                    <p>Get tailor-made website solutions built to match your unique business needs. Our custom development
-                        packages ensure high performance, seamless user experience, and full scalability for long-term online
-                        success.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($customDevelopment as $custom)
+        </div>
+    </section>
+    <section class="pricing-section py_8">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Custom Website</span> Development Packages</h2>
+                <p>Get tailor-made website solutions built to match your unique business needs. Our custom development
+                    packages ensure high performance, seamless user experience, and full scalability for long-term online
+                    success.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($customDevelopment as $custom)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
                             <img src="{{ asset('public/storage/' . $custom->image) }}" alt="digital marketing and advertising agency
-                                                                                                ">
+                                                                                                                ">
                             <h3>{{ $custom->title }}</h3>
                             @php
-                            $amounts = explode(' ', $custom->amount);
-                            $firstAmount = $amounts[0] ?? '';
-                            $secondAmount = $amounts[1] ?? '';
+                                $amounts = explode(' ', $custom->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
                             @endphp
                             <p class="price">
                                 <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
-                                <del>{{ $secondAmount }}</del>
+                                    <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $custom->description) as $feature)
-                                @php
-                                $cleanFeature = trim(
-                                preg_replace(
-                                '/\s+/',
-                                ' ',
-                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                ),
-                                );
-                                @endphp
-                                @if ($cleanFeature !== '')
-                                <li>
-                                    <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                    <span style="color: black;">{{ $cleanFeature }}</span>
-                                </li>
-                                @endif
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
-                              @php
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -550,54 +488,54 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section ">
-            <div class="container">
-                <div class="pricing_heading">
-                    .<h2><span class="linear_color">Shopify</span> Development Packages</h2>
-                    <p>Launch a powerful eCommerce store with our Shopify development packages. We design fast, responsive, and
-                        sales-driven Shopify websites tailored to your brand and optimized for conversions.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($shopify as $shop)
+        </div>
+    </section>
+    <section class="pricing-section ">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Shopify</span> Development Packages</h2>
+                <p>Launch a powerful eCommerce store with our Shopify development packages. We design fast, responsive, and
+                    sales-driven Shopify websites tailored to your brand and optimized for conversions.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($shopify as $shop)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
                             <img src="{{ asset('public/storage/' . $shop->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $shop->title }}</h3>
                             @php
-                            $amounts = explode(' ', $shop->amount);
-                            $firstAmount = $amounts[0] ?? '';
-                            $secondAmount = $amounts[1] ?? '';
+                                $amounts = explode(' ', $shop->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
                             @endphp
 
                             <p class="price">
                                 <span>Estimated Cost:</span>
                                 <span>{{ $firstAmount }}</span>
                                 @if ($secondAmount)
-                                <del>{{ $secondAmount }}</del>
+                                    <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $shop->description) as $feature)
-                                @php
-                                $cleanFeature = trim(
-                                preg_replace(
-                                '/\s+/',
-                                ' ',
-                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                ),
-                                );
-                                @endphp
-                                @if ($cleanFeature !== '')
-                                <li>
-                                    <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                    <span style="color: black;">{{ $cleanFeature }}</span>
-                                </li>
-                                @endif
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                             @php
@@ -635,57 +573,57 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">Wix Website</span> Packages</h2>
-                    <p>Build a stunning and easy-to-manage website with our Wix packages. Perfect for small businesses,
-                        creatives, and startups seeking a modern design with user-friendly functionality and mobile
-                        responsiveness.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($wix as $wixdevelopment)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $wixdevelopment->image) }}" alt="Wix Starter Package">
-                                <h3>{{ $wixdevelopment->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $wixdevelopment->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+        </div>
+    </section>
+    <section class="pricing-section py_8">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Wix Website</span> Packages</h2>
+                <p>Build a stunning and easy-to-manage website with our Wix packages. Perfect for small businesses,
+                    creatives, and startups seeking a modern design with user-friendly functionality and mobile
+                    responsiveness.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($wix as $wixdevelopment)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $wixdevelopment->image) }}" alt="Wix Starter Package">
+                            <h3>{{ $wixdevelopment->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $wixdevelopment->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $wixdevelopment->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $wixdevelopment->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -718,60 +656,60 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8 pt-0">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color"></span><span class="linear_color"> JAVA/React </span>Packages
-                    </h2>
-                    <p>Power your digital products with robust React and Java development. We build high-performance, scalable,
-                        and secure web applications tailored to complex business needs and modern user experiences.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($react as $java)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $java->image) }}" alt="WordPress Startup Package">
-                                <h3>{{ $java->title }} </h3>
-                                @php
-                                    $amounts = explode(' ', $java->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
+        </div>
+    </section>
+    <section class="pricing-section padding_Set py_8 pt-0">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color"></span><span class="linear_color"> JAVA/React </span>Packages
+                </h2>
+                <p>Power your digital products with robust React and Java development. We build high-performance, scalable,
+                    and secure web applications tailored to complex business needs and modern user experiences.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($react as $java)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $java->image) }}" alt="WordPress Startup Package">
+                            <h3>{{ $java->title }} </h3>
+                            @php
+                                $amounts = explode(' ', $java->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
 
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $java->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $java->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -804,58 +742,58 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">Creative Graphic Design</span> Packages</h2>
-                    <p>Enhance your brand identity with our creative graphic design packages. From logos to social media
-                        creatives, we deliver stunning visuals that elevate your business presence.</p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($graphic as $design)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $design->image) }}" alt="Graphic Design Starter Package">
-                                <h3>{{ $design->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $design->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+        </div>
+    </section>
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Creative Graphic Design</span> Packages</h2>
+                <p>Enhance your brand identity with our creative graphic design packages. From logos to social media
+                    creatives, we deliver stunning visuals that elevate your business presence.</p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($graphic as $design)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $design->image) }}" alt="Graphic Design Starter Package">
+                            <h3>{{ $design->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $design->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <p style="margin-left: 12px;">{{ $design->ideal }}</p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $design->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <p style="margin-left: 12px;">{{ $design->ideal }}</p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $design->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -887,59 +825,59 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section mt-5">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2>Affordable <span class="linear_color">SEO </span> Packages</h2>
-                    <p>Boost your online visibility without breaking the bank. Our affordable SEO packages offer keyword
-                        optimization, on-page SEO and backlink strategies designed to drive traffic and improve search rankings.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($seo as $seoss)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="WordPress Startup Package">
-                                <h3>{{ $seoss->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $seoss->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+        </div>
+    </section>
+    <section class="pricing-section mt-5">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2>Affordable <span class="linear_color">SEO </span> Packages</h2>
+                <p>Boost your online visibility without breaking the bank. Our affordable SEO packages offer keyword
+                    optimization, on-page SEO and backlink strategies designed to drive traffic and improve search rankings.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($seo as $seoss)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="WordPress Startup Package">
+                            <h3>{{ $seoss->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $seoss->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <p style="margin-left: 12px;">{{ $seoss->ideal }}</p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $seoss->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <p style="margin-left: 12px;">{{ $seoss->ideal }}</p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $seoss->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -971,60 +909,60 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">PPC</span> Advertising Packages</h2>
-                    <p>Drive instant traffic and leads with our PPC advertising packages. We create and manage high-converting
-                        ad campaigns on Google, Bing, and social media tailored to your business goals.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($ppc as $ppcc)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $ppcc->image) }}" alt="WordPress Startup Package">
-                                <h3>{{ $ppcc->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $ppcc->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
+        </div>
+    </section>
+    <section class="pricing-section py_8">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">PPC</span> Advertising Packages</h2>
+                <p>Drive instant traffic and leads with our PPC advertising packages. We create and manage high-converting
+                    ad campaigns on Google, Bing, and social media tailored to your business goals.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($ppc as $ppcc)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $ppcc->image) }}" alt="WordPress Startup Package">
+                            <h3>{{ $ppcc->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $ppcc->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
 
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <p style="margin-left: 12px;">{{ $ppcc->ideal }}</p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $ppcc->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <p style="margin-left: 12px;">{{ $ppcc->ideal }}</p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $ppcc->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -1056,60 +994,60 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8 pt-0">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2>Best <span class="linear_color">SMO</span> Packages</h2>
-                    <p>Strengthen your brand presence across social platforms with our best SMO packages. We create engaging
-                        content, manage profiles, and boost audience engagement to grow your social media influence.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($smo as $smoss)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $smoss->image) }}" alt="Starter SMO Package">
-                                <h3>{{ $smoss->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $smoss->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
+        </div>
+    </section>
+    <section class="pricing-section py_8 pt-0 padding_Set">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2>Best <span class="linear_color">SMO</span> Packages</h2>
+                <p>Strengthen your brand presence across social platforms with our best SMO packages. We create engaging
+                    content, manage profiles, and boost audience engagement to grow your social media influence.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($smo as $smoss)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $smoss->image) }}" alt="Starter SMO Package">
+                            <h3>{{ $smoss->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $smoss->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
 
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <p style="margin-left: 12px;">{{ $smoss->ideal }}</p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $smoss->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <p style="margin-left: 12px;">{{ $smoss->ideal }}</p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $smoss->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -1142,61 +1080,61 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </section>
-        <section class="pricing-section py_8 pt-0">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2><span class="linear_color">Email Marketing</span> &amp; Packages</h2>
-                    <p>Reach your audience directly with our result-driven email marketing packages. We craft engaging
-                        campaigns, automate workflows, and track performance to boost open rates, clicks, and customer
-                        conversions.
-                    </p>
-                </div>
-                <div class="row justify-content-center">
-                    @foreach ($emailMarkeitng as $email)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="pricing-card">
-                                <img src="{{ asset('public/storage/' . $email->image) }}"
-                                    alt="digital marketing and advertising agency                                                                                                                                                         ">
-                                <h3>{{ $email->title }}</h3>
-                                @php
-                                    $amounts = explode(' ', $email->amount);
-                                    $firstAmount = $amounts[0] ?? '';
-                                    $secondAmount = $amounts[1] ?? '';
-                                @endphp
-                                <p class="price">
-                                    <span>Estimated Cost:</span>
-                                    <span>{{ $firstAmount }}</span>
-                                    @if ($secondAmount)
-                                        <del>{{ $secondAmount }}</del>
+        </div>
+    </section>
+    <section class="pricing-section py_8 pt-0 padding_Set">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Email Marketing</span> &amp; Packages</h2>
+                <p>Reach your audience directly with our result-driven email marketing packages. We craft engaging
+                    campaigns, automate workflows, and track performance to boost open rates, clicks, and customer
+                    conversions.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($emailMarkeitng as $email)
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="pricing-card">
+                            <img src="{{ asset('public/storage/' . $email->image) }}"
+                                alt="digital marketing and advertising agency                                                                                                                                                         ">
+                            <h3>{{ $email->title }}</h3>
+                            @php
+                                $amounts = explode(' ', $email->amount);
+                                $firstAmount = $amounts[0] ?? '';
+                                $secondAmount = $amounts[1] ?? '';
+                            @endphp
+                            <p class="price">
+                                <span>Estimated Cost:</span>
+                                <span>{{ $firstAmount }}</span>
+                                @if ($secondAmount)
+                                    <del>{{ $secondAmount }}</del>
+                                @endif
+                            </p>
+                            <p style="margin-left: 12px;">{{ $email->ideal }}</p>
+                            <ul>
+                                @foreach (preg_split('/\r\n|\r|\n/', $email->description) as $feature)
+                                    @php
+                                        $cleanFeature = trim(
+                                            preg_replace(
+                                                '/\s+/',
+                                                ' ',
+                                                strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
+                                            ),
+                                        );
+                                    @endphp
+                                    @if ($cleanFeature !== '')
+                                        <li>
+                                            <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                            <span style="color: black;">{{ $cleanFeature }}</span>
+                                        </li>
                                     @endif
-                                </p>
-                                <p style="margin-left: 12px;">{{ $email->ideal }}</p>
-                                <ul>
-                                    @foreach (preg_split('/\r\n|\r|\n/', $email->description) as $feature)
-                                        @php
-                                            $cleanFeature = trim(
-                                                preg_replace(
-                                                    '/\s+/',
-                                                    ' ',
-                                                    strip_tags(html_entity_decode($feature, ENT_QUOTES | ENT_HTML5)),
-                                                ),
-                                            );
-                                        @endphp
-                                        @if ($cleanFeature !== '')
-                                            <li>
-                                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
-                                                <span style="color: black;">{{ $cleanFeature }}</span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                 @php
+                                @endforeach
+                            </ul>
+                            @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
                                 $inSession = false;
@@ -1229,355 +1167,310 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        <section class="weekly_best_selling py_8">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="weekly_best_txt">
-                            <h2>Weekly Best-Selling Products</h2>
-                            <p>Discover Pro Web Shop's top-selling products of the week! Handpicked by our customers, these
-                                trending items combine quality, value, and popularity—perfect for boosting your sales and
-                                staying ahead in the market. Shop the best now!
-                            </p>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="btn_weekly">
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="weekly_best_selling py_8">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="weekly_best_txt">
+                        <h2>Weekly Best-Selling Products</h2>
+                        <p>Discover Pro Web Shop's top-selling products of the week! Handpicked by our customers, these
+                            trending items combine quality, value, and popularity—perfect for boosting your sales and
+                            staying ahead in the market. Shop the best now!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn_weekly">
+                        <a href="{{ route('contact.us') }}">
+                            <button class="btn_theme btn_blog">Contact Us</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="feature_product py_8"
+        style="background-image: url({{ asset('public/frontend/img/pattern-curve-four.png') }});">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2>Featured <span class="linear_color">Products</span></h2>
+                <p>Explore our handpicked selection of top web themes & templates for this month. Curated by experts,
+                    these premium designs help you build stunning websites effortlessly!</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/php_icon.png') }}"
+                                alt="best digital marketing services                                                               ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>PHP Laravel Website </h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('php-laravel-website') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/react_icon.png') }}"
+                                alt="digital marketing agency                                                               ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>React & Java Development</h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('react-java-website') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/shopify_icon.png') }}"
+                                alt="digital marketing and advertising agency                                                                                               ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>Shopify Website Development</h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('shopify-development') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/webflow_icon.png') }}" alt="web service packages
+                                                                                                        ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>Webflow Website Development</h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('webflow-development') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/wix_icon.png') }}" alt="best digital marketing services
+                                                                                                        ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>Wix Website Development</h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('wix-website-development') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="feature_under_product">
+                        <div class="product_icon">
+                            <img src="{{ asset('public/frontend/img/wordpress_icon.png') }}" alt="digital marketing agency
+                                                                                                        ">
+                        </div>
+                        <div class="txt_feture_product">
+                            <h3>WordPress Website Development</h3>
+                            <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
+                                development services. We create custom, feature-rich websites tailored to your business
+                                needs, ensuring seamless functionality and an excellent user experience.</p>
+                            <div class="btn_feature_product">
+                                <a href="{{ route('wordpress-website-development') }}">View Profile <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="top_performance_main py_8">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
+                        <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                            <div class="php_package package_design">
+                                <h3>Webflow Website Development</h3>
+                                <p class=""><span class="counter" data-target="350">0</span>+<span>subscriptions</span></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                            <div class="react_package package_design">
+                                <h3>React & Java Development</h3>
+                                <p><span class="counter" data-target="480">0</span>+ <span>subscriptions</span></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                            <div class="wix_package package_design">
+                                <h3>Wix Website Development</h3>
+                                <p><span class="counter" data-target="270">0</span>+ <span>subscriptions</span></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                            <div class="shopify_package package_design">
+                                <h3>Shopify Website Development</h3>
+                                <p><span class="counter" data-target="190">0</span>+ <span>subscriptions</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="text_top_performance">
+                        <h2>Top Performance</h2>
+                        <p>With our optimized solutions, you can experience top-tier speed, reliability, and efficiency.
+                            We ensure seamless functionality and high performance for your digital products. Elevate
+                            your website’s user experience with cutting-edge technology!</p>
+                        {{-- <div class="btn_performance">
+                            <button class="btn_theme"><a href="#">Get Started</a></button>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest_blog_sec py_8"
+        style="background-image: url({{ asset('public/frontend/img/pattern-curve-four.png') }});">
+        <div class="container">
+            <div class="flex_bloging_heading">
+                <h2>Browse All <span class="linear_color">Latest </span><span class="linear_color">Blogs</span></h2>
+                <div class="btn_latest_all">
+                    <a href="{{ route('blogs') }}">
+                        <button class="btn_theme">Browse All Blogs</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="owl-carousel owl-theme" id="blog-carousel">
+
+            
+                @foreach ($blogssss as $blogD)
+                    <div class="item">
+                        <div class="blog-section">
+                            <div class="blog-card">
+                                <img src="{{ asset('public/storage/' . $blogD->image) }}" alt="Blog Image"
+                                    style="height: 300px;">
+
+                                <div class="blog-content">
+                                    <h4>{{ \Illuminate\Support\Str::limit($blogD->title, 25, '...') }}</h4>
+                                    <p>Hiring | <i class="fa-regular fa-calendar"></i>
+                                        {{ $blogD->created_at->format('d F Y') }}</p>
+
+                                    <div class="btn_read_more_blog">
+                                        <a href="{{ route('blog-detail', $blogD->slug ?? '') }}">
+                                            <button class="btn_theme btn_blog">Read More</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+
+    <section class="earning_prowebshop py_8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card light-purple"
+                        style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
+                        <h2>Maximize Your Earnings with Pro Web Shop</h2>
+                        <p>Maximize your earnings with Pro Web Shop! Our powerful e-commerce solutions help you boost
+                            sales, attract customers, and streamline operations for ultimate business growth.</p>
+                        <div class="btn_earnings">
                             <a href="{{ route('contact.us') }}">
-                                <button class="btn_theme">Contact Us</button>
+                                <button class="btn_theme btn_blog">Contact</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card light-pink"
+                        style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
+                        <h2>Start Earning Today</h2>
+                        <p>Start earning today with our expert solutions! Boost your income, grow your business, and
+                            unlock new opportunities with powerful tools designed for success.</p>
+                        <div class="btn_earnings">
+                            <a href="{{ route('contact.us') }}">
+                                <button class="btn_theme btn_blog">Contact</button>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="feature_product py_8"
-            style="background-image: url({{ asset('public/frontend/img/pattern-curve-four.png') }});">
-            <div class="container">
-                <div class="pricing_heading">
-                    <h2>Featured <span class="linear_color">Products</span></h2>
-                    <p>Explore our handpicked selection of top web themes & templates for this month. Curated by experts,
-                        these premium designs help you build stunning websites effortlessly!</p>
+        </div>
+    </section>
+    <section class="supportive_sec py_8 pt-0 ">
+        <div class="container">
+            <div class="row align-items-center g-0">
+                <div class="col-md-4">
+                    <div class="support-section">
+                        <div class="support-image">
+                            <img src="{{ asset('public/frontend/img/support-img.png') }}" alt="best digital marketing services
+                                                                                                        ">
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/php_icon.png') }}" alt="best digital marketing services                                                               ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>PHP Laravel Website </h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('php-laravel-website') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
+                <div class="col-md-4 mb-4">
+                    <div class="support-section">
+                        <div class="support-image">
+                            <img src="{{ asset('public/frontend/img/arrow-shape.png') }}" alt="digital marketing agency">
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/react_icon.png') }}" alt="digital marketing agency                                                               ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>React & Java Development</h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('react-java-website') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/shopify_icon.png') }}" alt="digital marketing and advertising agency                                                                                               ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>Shopify Website Development</h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('shopify-development') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/webflow_icon.png') }}" alt="web service packages
-                                                                                                ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>Webflow Website Development</h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('webflow-development') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/wix_icon.png') }}" alt="best digital marketing services
-                                                                                                ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>Wix Website Development</h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('wix-website-development') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="feature_under_product">
-                            <div class="product_icon">
-                                <img src="{{ asset('public/frontend/img/wordpress_icon.png') }}" alt="digital marketing agency
-                                                                                                ">
-                            </div>
-                            <div class="txt_feture_product">
-                                <h3>WordPress Website Development</h3>
-                                <p>Build secure, scalable, and high-performing web applications with our PHP Laravel
-                                    development services. We create custom, feature-rich websites tailored to your business
-                                    needs, ensuring seamless functionality and an excellent user experience.</p>
-                                <div class="btn_feature_product">
-                                    <a href="{{ route('wordpress-website-development') }}">View Profile <i
-                                            class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="support-content"
+                        style="background-image: url({{ asset('public/frontend/img/spider-net-sm.png') }});">
+                        <h2>Support 24/7</h2>
+                        <p>Wanna talk? Send us a message</p>
+                        <button class="btn_theme btn_blog"><a
+                                href="mailto:info@prowebshop.online">Info@Prowebshop.Online</a></button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        </div>
+    </section>
 
-        <section class="top_performance_main py_8">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="img_top_performance">
-                            <img src="{{ asset('public/frontend/img/flower.gif') }}" alt="digital marketing and advertising agency
-                                                                                                ">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text_top_performance">
-                            <h2>Top Performance</h2>
-                            <p>With our optimized solutions, you can experience top-tier speed, reliability, and efficiency.
-                                We ensure seamless functionality and high performance for your digital products. Elevate
-                                your website’s user experience with cutting-edge technology!</p>
-                            {{-- <div class="btn_performance">
-                                <button class="btn_theme"><a href="#">Get Started</a></button>
-                            </div> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="latest_blog_sec py_8"
-            style="background-image: url({{ asset('public/frontend/img/pattern-curve-four.png') }});">
-            <div class="container">
-                <div class="flex_bloging_heading">
-                    <h2>Browse All <span class="linear_color">Latest </span><span class="linear_color">Blogs</span>
-                    </h2>
-                    <div class="btn_latest_all">
-                        <a href="{{ route('blogs') }}">
-                            <button class="btn_theme">Browse All Blogs</button>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach ($blogssss as $blogD)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="blog-section">
-                                <div class="blog-card">
-                                    <img src="{{ asset('public/storage/' . $blogD->image) }}"
-                                        alt="web service packages
-                                                                                                                                                                                                "
-                                        style=" height: 300px; ">
 
-                                    <div class="blog-content">
-                                        <h4>{{ \Illuminate\Support\Str::limit($blogD->title, 25, '...') }}</h4>
-                                        <p>Hiring | <i class="fa-regular fa-calendar"></i>
-                                            {{ $blogD->created_at->format('d F Y') }}</p>
-
-                                        <div class="btn_read_more_blog">
-                                            <button class="btn_theme btn_blog"><a href="{{ route('blog-detail', $blogD->slug ?? '') }}">Read
-                                                    More</a></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        <section class="earning_prowebshop py_8">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card light-purple"
-                            style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
-                            <h2>Maximize Your Earnings with Pro Web Shop</h2>
-                            <p>Maximize your earnings with Pro Web Shop! Our powerful e-commerce solutions help you boost
-                                sales, attract customers, and streamline operations for ultimate business growth.</p>
-                            <div class="btn_earnings">
-                                <a href="{{ route('contact.us') }}">
-                                    <button class="btn_theme btn_blog">Contact</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card light-pink"
-                            style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
-                            <h2>Start Earning Today</h2>
-                            <p>Start earning today with our expert solutions! Boost your income, grow your business, and
-                                unlock new opportunities with powerful tools designed for success.</p>
-                            <div class="btn_earnings">
-                                <a href="{{ route('contact.us') }}">
-                                    <button class="btn_theme btn_blog">Contact</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="supportive_sec py_8 pt-0 ">
-            <div class="container">
-                <div class="row align-items-center g-0">
-                    <div class="col-md-4">
-                        <div class="support-section">
-                            <div class="support-image">
-                                <img src="{{ asset('public/frontend/img/support-img.png') }}" alt="best digital marketing services
-                                                                                                ">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="support-section">
-                            <div class="support-image">
-                                <img src="{{ asset('public/frontend/img/arrow-shape.png') }}" alt="digital marketing agency">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="support-content"
-                            style="background-image: url({{ asset('public/frontend/img/spider-net-sm.png') }});">
-                            <h2>Support 24/7</h2>
-                            <p>Wanna talk? Send us a message</p>
-                            <button class="btn_theme btn_blog"><a
-                                    href="mailto:info@prowebshop.online">Info@Prowebshop.Online</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        {{--
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('.add-to-cart-form').forEach(form => {
-                    form.addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        const formData = new FormData(form);
-                        const packageId = form.dataset.packageId;
-
-                        fetch("{{ route('add.to.cart') }}", {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': formData.get('_token'),
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.success) {
-                                    const wrapper = document.querySelector(`#package-${packageId}`);
-                                    wrapper.innerHTML = `
-                                    <div class="btn_pricing_cards d-flex align-items-center gap-2 qty-controls">
-                                        <button type="button" class="btn btn-secondary" onclick="decrementQty(this)">−</button>
-                                        <input type="number" class="qty-input form-control w-25 text-center" value="1" readonly>
-                                        <button type="button" class="btn btn-secondary" onclick="incrementQty(this)">+</button>
-                                    </div>`;
-                                } else {
-                                    alert(data.error || 'Something went wrong.');
-                                }
-                            })
-                            .catch(err => alert('Failed to add to cart.'));
-                    });
-                });
-            });
-            function incrementQty(button) {
-                const wrapper = button.closest('.package-wrapper');
-                const input = wrapper.querySelector('.qty-input');
-                let qty = parseInt(input.value);
-                const packageId = wrapper.id.replace('package-', '');
-                qty++;
-                updateCartQty(packageId, qty, input);
-            }
-            function decrementQty(button) {
-                const wrapper = button.closest('.package-wrapper');
-                const input = wrapper.querySelector('.qty-input');
-                let qty = parseInt(input.value);
-                const packageId = wrapper.id.replace('package-', '');
-                if (qty > 1) {
-                    qty--;
-                    updateCartQty(packageId, qty, input);
-                }
-            }
-            function updateCartQty(packageId, qty, inputEl) {
-                fetch("{{ route('cart.updateQty') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        package_id: packageId,
-                        quantity: qty
-                    })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            inputEl.value = qty;
-                        } else {
-                            alert(data.error || 'Failed to update quantity');
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        alert('Something went wrong');
-                    });
-            }
-        </script> --}}
 @endsection

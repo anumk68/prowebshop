@@ -811,16 +811,32 @@ class IndexController extends Controller
 
     }
 
-    public function privacypolicy() {
+    public function privacypolicy()
+    {
         return view('frontend.privacypolicy');
     }
 
-    public function refundpolicy() {
+    public function refundpolicy()
+    {
         return view('frontend.refundpolicy');
     }
 
-    public function termsandcondition() {
+    public function termsandcondition()
+    {
         return view('frontend.termsandcondition');
+    }
+    public function singleproduct()
+    {
+        return view('frontend.single-product');
+    }
+    public function productdetailmain()
+    {
+        $services_type = Type::where('is_active', '1')->get();
+        return view('frontend.product_detail_main',compact('services_type'));
+    }
+     public function accountpage()
+    {
+        return view('frontend.accountpage');
     }
 
 }
