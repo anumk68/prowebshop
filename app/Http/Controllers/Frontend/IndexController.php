@@ -832,7 +832,8 @@ class IndexController extends Controller
     public function productdetailmain()
     {
         $services_type = Type::where('is_active', '1')->get();
-        return view('frontend.product_detail_main',compact('services_type'));
+         $php = Package::where('is_active', 1)->where('type', 1)->get();
+        return view('frontend.product_detail_main',compact('services_type','php'));
     }
      public function accountpage()
     {

@@ -61,8 +61,9 @@
                                         aria-selected="true">Description</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link heading_description" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                                        type="button" role="tab" aria-selected="false" tabindex="-1">Review</button>
+                                    <button class="nav-link heading_description" id="review-tab" data-bs-toggle="tab"
+                                        data-bs-target="#review" type="button" role="tab" aria-selected="false"
+                                        tabindex="-1">Review</button>
                                 </li>
                             </ul>
                             <div class="tab-content p-3 border border-top-0 mb-4 decrip_content " id="myTabContent">
@@ -100,7 +101,7 @@
                                         </ul>
                                         <a href="#">See other sellers</a>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -259,4 +260,260 @@
 
                 </div>
     </section>
+
+
+
+    <section class="pricing-section py_8 pt-0">
+        <div class="container">
+            <div class="pricing_heading">
+                <h2><span class="linear_color">Recent </span>Packages</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="pricing-card">
+                        <img src="http://localhost/prowebshop_2_august_25_main/public/storage/1754130714.webp"
+                            alt="web service packages">
+                        <h3>Starter PHP Packages</h3>
+                        <p class="price">
+                            <span>Estimated Cost:</span>
+                            <span>$99</span>
+                            <del>$250</del>
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Custom Laravel Website (Up to 5 Pages)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Basic Authentication (Login/Signup/Forgot Password)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Contact Form with AJAX Validation</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Basic SEO Setup (Meta Tags, Sitemap, Robots.txt)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Single Database Integration (MySQL/PostgreSQL)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Basic Security Features (CSRF, XSS Protection, SSL Setup)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Performance Optimization (Caching, Minification, Lazy
+                                    Loading)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">1 Month Free Support &amp; Bug Fixes</span>
+                            </li>
+                        </ul>
+                        <div id="package-1" class="package-wrapper">
+                            <form method="POST" action="http://localhost/prowebshop_2_august_25_main/add-to-cart"
+                                class="d-flex align-items-center">
+                                <input type="hidden" name="_token" value="tDl9jF1e61DkTQKzZbMnMTBzqMYhFir6VM3v870t"
+                                    autocomplete="off"> <input type="hidden" name="package_id" value="1">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn_theme">
+                                    Add To Cart
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="pricing-card">
+                        <img src="http://localhost/prowebshop_2_august_25_main/public/storage/1754130721.webp"
+                            alt="web service packages">
+                        <h3>Basic PHP Packages</h3>
+                        <p class="price">
+                            <span>Estimated Cost:</span>
+                            <span>$290</span>
+                            <del>$500</del>
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Includes Everything in Starter</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Custom Laravel Website (Up to 10 Pages, Modular
+                                    Development)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Advanced Role-Based Authentication &amp; Multi-User
+                                    Access</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Dynamic Admin Dashboard with CRUD Operations</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;REST API Development with Swagger Documentation</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Advanced SEO &amp; Performance Optimization</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Payment Gateway Integration (Stripe, PayPal, Razorpay,
+                                    etc.)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Cloud Storage &amp; File Upload (AWS S3, Google Cloud
+                                    Storage)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Social Login &amp; Third-Party API Integrations</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Real-Time Features (WebSockets, Notifications, Live
+                                    Chat)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Server-Side Caching with Redis or Memcached</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Automated Deployment &amp; CI/CD Pipeline Setup</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Advanced Security Measures (OAuth2, JWT, Rate Limiting,
+                                    Firewall)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;2 Months Free Support &amp; Maintenance</span>
+                            </li>
+                        </ul>
+                        <div id="package-2" class="package-wrapper">
+                            <form method="POST" action="http://localhost/prowebshop_2_august_25_main/add-to-cart"
+                                class="d-flex align-items-center">
+                                <input type="hidden" name="_token" value="tDl9jF1e61DkTQKzZbMnMTBzqMYhFir6VM3v870t"
+                                    autocomplete="off"> <input type="hidden" name="package_id" value="2">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn_theme">
+                                    Add To Cart
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="pricing-card">
+                        <img src="http://localhost/prowebshop_2_august_25_main/public/storage/1754130731.webp"
+                            alt="web service packages">
+                        <h3>Corporate PHP Packages</h3>
+                        <p class="price">
+                            <span>Estimated Cost:</span>
+                            <span>$500</span>
+                            <del>$850</del>
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Includes Everything in Basic</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Unlimited Pages &amp; Modular Microservices Architecture</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Headless CMS &amp; API-First Development (GraphQL/REST)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Advanced E-Commerce Features (Multi-Currency, Subscription,
+                                    Custom Workflows)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Enterprise-Level Security (HSTS, CSP, SAML, Keycloak
+                                    Integration)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;AI &amp; Machine Learning Integration (Recommendation
+                                    Engine, NLP, Chatbots)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Blockchain &amp; Web3 Support (Smart Contracts, Ethereum,
+                                    Hyperledger)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Cloud-Based Load Balancing &amp; High Availability
+                                    Setup</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Data Warehousing &amp; ETL Pipelines (BigQuery, Snowflake,
+                                    Redshift)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Headless CMS &amp; API-First Development
+                                    (GraphQL/REST)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">Advanced Business Intelligence &amp; Analytics Dashboard</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Multi-Server Deployment &amp; Kubernetes
+                                    Orchestration</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">&nbsp;Automated Security Audits &amp; Compliance (ISO, GDPR,
+                                    HIPAA)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">24/7 Dedicated SLA-Based Support &amp; Performance
+                                    Monitoring</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check" style="margin-right: 6px;"></i>
+                                <span style="color: black;">6 Months Free Support &amp; Continuous Upgrades</span>
+                            </li>
+                        </ul>
+                        <div id="package-3" class="package-wrapper">
+                            <form method="POST" action="http://localhost/prowebshop_2_august_25_main/add-to-cart"
+                                class="d-flex align-items-center">
+                                <input type="hidden" name="_token" value="tDl9jF1e61DkTQKzZbMnMTBzqMYhFir6VM3v870t"
+                                    autocomplete="off"> <input type="hidden" name="package_id" value="3">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn_theme">
+                                    Add To Cart
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection
