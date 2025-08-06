@@ -1755,3 +1755,17 @@ button.btn_theme.w-100.btn-register {
     display: flex;
     flex-direction: column;
 }
+.star-rating {
+    direction: ltr;
+    font-size: 32px;
+    display: inline-flex;
+    gap: 5px;
+    cursor: pointer;
+}
+.rating-output {
+  color: #ba4bf1;
+}
+
+.decrip_content a {
+    color: #ba4bf1;
+}

@@ -105,6 +105,52 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+
+
+                                    <button type="button" class="btn_theme mt-3 btn_blog" data-bs-toggle="modal"
+                                        data-bs-target="#reviewModal">
+                                        Write a Review
+                                    </button>
+
+                                    <div class="modal fade" id="reviewModal" tabindex="-1"
+                                        aria-labelledby="reviewModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body text-center">
+                                                    <input type="hidden" id="user-id" data-user="53">
+                                                    <input type="hidden" id="package-id" data-package="6">
+
+                                                    <div id="starRating" class="star-rating mb-2">
+                                                        <span class="star" data-value="1">★</span>
+                                                        <span class="star" data-value="2">★</span>
+                                                        <span class="star" data-value="3">★</span>
+                                                        <span class="star" data-value="4">★</span>
+                                                        <span class="star" data-value="5">★</span>
+                                                    </div>
+
+                                                    <div>Current Rating: <span class="rating-output"
+                                                            id="currentRating">0</span></div>
+                                                    <textarea class="form-control mt-3" rows="4" id="review_data"
+                                                        placeholder="Write your review..."></textarea>
+                                                    <button class="btn_theme mt-3 btn_blog"><a href="#">Submit</a></button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     <div class="write_review_btn mt-4">
                                         <p><a href="https://prowebshop.online/user-login">Login</a> to write a review.</p>
                                     </div>
