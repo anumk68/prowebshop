@@ -8,7 +8,7 @@
                 <div class="text_about_us">
                     <h1>Affordable SEO Packages</h1>
                        <p>Drive more traffic, boost search rankings, and grow your business with our budget-friendly SEO packages tailored to your goals.
-                       </p> 
+                       </p>
                     <div class="banner_btn_services">
                         <a href="{{ route('contact.us') }}">
                             <button class="btn_theme">Book Free Consultation</button>
@@ -29,6 +29,7 @@
                 @foreach ($seo as $seoss)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $seoss->id)}}">
                             <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="search engine optimization services
                         ">
                             <h3>{{ $seoss->title }}</h3>
@@ -44,6 +45,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $seoss->description) as $feature)
                                     @php

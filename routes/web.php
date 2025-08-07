@@ -6,17 +6,18 @@ use App\Http\Controllers\admin\ContactUsController;
 use App\Http\Controllers\admin\CustomPackageController;
 use App\Http\Controllers\admin\EmailMarketingController;
 use App\Http\Controllers\admin\GraphicController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\PackageController;
 use App\Http\Controllers\admin\PhpLaravelController;
 use App\Http\Controllers\admin\PpcController;
 use App\Http\Controllers\admin\ReactController;
+use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\SeoController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\ShopifyController;
 use App\Http\Controllers\admin\SmoController;
 use App\Http\Controllers\admin\TypeController;
-use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\webFlowController;
 use App\Http\Controllers\admin\WixController;
 use App\Http\Controllers\admin\WordpressController;
@@ -71,14 +72,16 @@ Route::post('/cart/remove', [IndexController::class, 'removeFromCart'])->name('c
 Route::get('/cart/totals', [IndexController::class, 'cart_amount_totals'])->name('cart.totals');
 Route::get('/checkout', [IndexController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [IndexController::class, 'placeOrder'])->name('place.order');
+
 Route::get('/privacypolicy', [IndexController::class, 'privacypolicy'])->name('privacy.policy');
 Route::get('/refundpolicy', [IndexController::class, 'refundpolicy'])->name('refund.policy');
 Route::get('/termsandcondition', [IndexController::class, 'termsandcondition'])->name('termsand.condition');
-Route::get('/singleproduct', [IndexController::class, 'singleproduct'])->name('single.product');
-Route::get('/productdetailmain', [IndexController::class, 'productdetailmain'])->name('productdetail.main');
+Route::get('/product-detail/{id}', [IndexController::class, 'productdetailmain'])->name('productdetail');
 Route::get('/accountpage', [IndexController::class, 'accountpage'])->name('account.page');
+Route::post('/account-update/{id}', [IndexController::class, 'account_update'])->name('account.update');
 
-
+Route::post('/review/store', [IndexController::class, 'review_store'])->name('review.store');
+Route::get('/invoice/download/{order}', [IndexController::class, 'downloadInvoice'])->name('invoice.download');
 
 // ------------------------------admin routes-------------------------//
 //-------------------------------- Authenticated routes---------------------------------//
@@ -221,5 +224,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/save/emailMarketing-package', [EmailMarketingController::class, 'save'])->name('save-emailMarketing');
     Route::put('/update/emailMarketing-package/{id}', [EmailMarketingController::class, 'save'])->name('update-emailMarketing');
     Route::delete('/updateStatus/emailMarketing-package/{id}', [EmailMarketingController::class, 'updateStatus'])->name('updateStatus-emailMarketing');
+
+    //---------------------------------Reviews-----------------------------------------//
+
+    Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.list');
+    Route::get('/admin/review/delete/{id}', [ReviewController::class, 'destroy'])->name('admin.review.delete');
+
+    //---------------------------------Offers-----------------------------------------//
+
+    Route::get('/admin/offers', [OfferController::class, 'index'])->name('admin.offers.index');
+    Route::get('/offers/create', [OfferController::class, 'create'])->name('admin.offers.create');
+    Route::post('/offers/store', [OfferController::class, 'store'])->name('admin.offers.store');
+    Route::delete('/admin/offers/delete/{id}', [OfferController::class, 'destroy'])->name('admin.offers.destroy');
+    Route::get('/admin/offers/{id}/edit', [OfferController::class, 'edit'])->name('admin.offers.edit');
+    Route::put('/admin/offers/{id}', [OfferController::class, 'update'])->name('admin.offers.update');
 
 });

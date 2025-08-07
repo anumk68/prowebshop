@@ -10,44 +10,42 @@
         </div>
     </section>
 
-
-
     <section class="single_product_one py_8">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 sidebar mb-3">
                     <div class="account_left">
- <ul class="nav nav-pills flex-md-column flex-row justify-content-around" id="dashboardTabs"
-                        role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active account_info" id="dashboard-tab" data-bs-toggle="pill"
-                                data-bs-target="#dashboard" type="button" role="tab" aria-selected="true"><i
-                                    class="fa fa-tachometer"></i>
-                                Dashboard</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link account_info" id="orders-tab" data-bs-toggle="pill"
-                                data-bs-target="#orders" type="button" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="fa fa-shopping-cart"></i> Orders</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link account_info" id="account-tab" data-bs-toggle="pill"
-                                data-bs-target="#account" type="button" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="fa fa-user"></i>
-                                Account Details</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <form action="https://printerithelp.com/user-logout" method="POST">
-                                <input type="hidden" name="_token" value="CNLT0WVO5sf26gYeTViEbCWAuEjYUpp2YHquw4BU"
-                                    autocomplete="off"> <button class="nav-link" id="logout-tab" type="submit" role="tab"
-                                    aria-selected="false" tabindex="-1"><i class="fa fa-sign-out"></i>
-                                    Logout</button>
-                            </form>
+                        <ul class="nav nav-pills flex-md-column flex-row justify-content-around" id="dashboardTabs"
+                            role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active account_info" id="dashboard-tab" data-bs-toggle="pill"
+                                    data-bs-target="#dashboard" type="button" role="tab" aria-selected="true"><i
+                                        class="fa fa-tachometer"></i>
+                                    Dashboard</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link account_info" id="orders-tab" data-bs-toggle="pill"
+                                    data-bs-target="#orders" type="button" role="tab" aria-selected="false"
+                                    tabindex="-1"><i class="fa fa-shopping-cart"></i> Orders</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link account_info" id="account-tab" data-bs-toggle="pill"
+                                    data-bs-target="#account" type="button" role="tab" aria-selected="false"
+                                    tabindex="-1"><i class="fa fa-user"></i>
+                                    Account Details</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <form action="https://printerithelp.com/user-logout" method="POST">
+                                    <input type="hidden" name="_token" value="CNLT0WVO5sf26gYeTViEbCWAuEjYUpp2YHquw4BU"
+                                        autocomplete="off"> <button class="nav-link" id="logout-tab" type="submit"
+                                        role="tab" aria-selected="false" tabindex="-1"><i class="fa fa-sign-out"></i>
+                                        Logout</button>
+                                </form>
 
-                        </li>
-                    </ul>
-                    </div>                   
-                    
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
                 <div class="col-md-9 tab-content" id="dashboardTabsContent">
@@ -56,7 +54,7 @@
                         <h4>Dashboard</h4>
                         <p>Hello,
                             <strong>
-                                jasmine
+                                {{ $user->name ?? 'N/A' }}
                             </strong>
                         </p>
                         <p>From your account dashboard you can check your recent orders, manage your address and edit your
@@ -79,6 +77,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($orders as $index => $order)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $order->address }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                            <td>${{ $order->total_amount }}</td>
+                                            <td>
+                                                <a href="{{ route('invoice.download', $order->id) }}"
+                                                    class="btn btn-sm btn-primary">Download</a>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -88,48 +99,55 @@
                     <!-- Account Details -->
                     <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
                         <h4>Account Details</h4>
-                        <form action="https://printerithelp.com/account-update" method="POST" class="mt-4">
-                            <input type="hidden" name="_token" value="CNLT0WVO5sf26gYeTViEbCWAuEjYUpp2YHquw4BU"
-                                autocomplete="off">
+                        <form action="{{ route('account.update', $user->id) }}" method="POST" class="mt-4">
+                            @csrf
+
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-2">
-                                    <input type="text" class="form-control" name="name" value="jasmine"
-                                        placeholder="jasmine">
+                                    <input type="text" class="form-control" name="name" value="{{ $user->name }}"
+                                        placeholder="Name">
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <input type="email" name="email" class="form-control" value="admin@gmail.com"
-                                        placeholder="jasmine@gmail.com">
+                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}"
+                                        placeholder="Email">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-2">
-                                    <input type="text" class="form-control" name="phone" value="" placeholder="Phone">
+                                    <input type="text" class="form-control" name="phone" value="{{ $user->phone }}"
+                                        placeholder="Phone">
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <input type="text" class="form-control" placeholder="Zip Code">
+                                    <input type="text" class="form-control" name="zip_code"
+                                        value="{{ $user->zip_code }}" placeholder="Zip Code">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <textarea class="form-control" rows="4" placeholder="Address"></textarea>
+                                <textarea class="form-control" name="address" rows="4" placeholder="Address">{{ $user->address }}</textarea>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-md-4 mb-2">
-                                    <input type="text" class="form-control" placeholder="Select Country">
+                                    <input type="text" class="form-control" name="country"
+                                        value="{{ $user->country }}" placeholder="Select Country">
                                 </div>
                                 <div class="col-md-4 mb-2">
-                                    <input type="text" class="form-control" placeholder="Select State">
+                                    <input type="text" class="form-control" name="state"
+                                        value="{{ $user->state }}" placeholder="Select State">
                                 </div>
                                 <div class="col-md-4 mb-2">
-                                    <input type="text" class="form-control" placeholder="Select City">
+                                    <input type="text" class="form-control" name="city"
+                                        value="{{ $user->city }}" placeholder="Select City">
                                 </div>
                             </div>
-                            <div class="button_account">
 
+                            <div class="button_account">
                                 <button type="submit" class="btn_theme mt-3 btn_blog">Save Changes</button>
                             </div>
-
                         </form>
+
                     </div>
                     <div class="tab-pane fade" id="logout" role="tabpanel">
                         <h4>You have been logged out.</h4>
@@ -138,5 +156,4 @@
             </div>
         </div>
     </section>
-
 @endsection

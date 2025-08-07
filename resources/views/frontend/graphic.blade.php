@@ -26,6 +26,7 @@
                 @foreach ($graphic as $design)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $design->id)}}">
                             <img src="{{ asset('public/storage/' . $design->image) }}" alt="graphic designing services
                             ">
                             <h3>{{ $design->title }}</h3>
@@ -42,6 +43,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $design->description) as $feature)
                                     @php

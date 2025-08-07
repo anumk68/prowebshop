@@ -2,7 +2,8 @@
 @section('title', $meta_title->meta_value ?? 'Default Website Title')
 @section('description', $meta_description->meta_value ?? 'Default description')
 @section('content')
-    <section class="banner_about_us py_8" style="background-image: url({{ asset('public/frontend/img/php_laravel_banner.png') }});">
+    <section class="banner_about_us py_8"
+        style="background-image: url({{ asset('public/frontend/img/php_laravel_banner.png') }});">
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
@@ -11,7 +12,7 @@
                         skilled
                         developers remain updated with the latest trends to make your site fast, secure, and scalable.</p>
                     <div class="banner_btn_services">
-                        <button class="btn_theme"><a href="{{route('contact.us')}}">Book Free Consultation</a></button>
+                        <button class="btn_theme"><a href="{{ route('contact.us') }}">Book Free Consultation</a></button>
                     </div>
                 </div>
             </div>
@@ -23,8 +24,9 @@
                 @foreach ($php as $laravel)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
-                            <img src="{{ asset('public/storage/' . $laravel->image) }}" alt="php packages
-">
+                             <a href="{{route('productdetail', $laravel->id)}}">
+
+                            <img src="{{ asset('public/storage/' . $laravel->image) }}" alt="php packages">
                             <h3>{{ $laravel->title }}</h3>
                             @php
                                 // Split the string by space
@@ -39,6 +41,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $laravel->description) as $feature)
                                     @php
@@ -63,25 +66,24 @@
                                 $cartItem = null;
 
                                 if ($user) {
-                                    $cartItem = App\Models\Cart::where('user_id', $user->id)
+                                    $cartItem = \App\Models\Cart::where('user_id', $user->id)
                                         ->where('package_id', $laravel->id)
                                         ->first();
                                 }
                             @endphp
+
                             <div id="package-{{ $laravel->id }}" class="package-wrapper">
-                                 @unless ($cartItem)
-                                    <form method="POST" action="{{ route('add.to.cart') }}"
-                                        class="d-flex align-items-center">
-                                        @csrf
-                                        <input type="hidden" name="package_id" value="{{ $laravel->id }}">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn_theme">Add To Cart</button>
-                                    </form>
-                                @endunless
-                                @if ($cartItem)
-                                    <button type="submit" class="btn_theme" disabled>Add To Cart</button>
-                                @endif
+                                <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
+                                    @csrf
+                                    <input type="hidden" name="package_id" value="{{ $laravel->id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn_theme">
+                                        {{ $cartItem ? 'Add More' : 'Add To Cart' }}
+                                    </button>
+                                </form>
                             </div>
+
+
                         </div>
                     </div>
                 @endforeach
@@ -93,7 +95,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="img_custom">
-                        <img src="{{ asset('public/frontend/img/custom_php_laravel.webp') }}" alt="php website development
+                        <img src="{{ asset('public/frontend/img/custom_php_laravel.webp') }}"
+                            alt="php website development
 ">
                     </div>
                 </div>
@@ -120,11 +123,12 @@
                     chosen
                     by our content specialists.</p>
             </div>
-            <div class="row justify-content-center" >
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/web_services/Custom-PHP-Laravel-Development.png') }}" alt="laravel web development agency
+                            <img src="{{ asset('public/frontend/img/web_services/Custom-PHP-Laravel-Development.png') }}"
+                                alt="laravel web development agency
 ">
                         </div>
                         <div class="txt_feture_product">
@@ -139,7 +143,8 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/web_services/Laravel-E-Commerce-Solutions.png') }}" alt="php packages">
+                            <img src="{{ asset('public/frontend/img/web_services/Laravel-E-Commerce-Solutions.png') }}"
+                                alt="php packages">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Laravel E-Commerce Solutions</h3>
@@ -154,7 +159,8 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="feature_under_product">
                         <div class="product_icon">
-                            <img src="{{ asset('public/frontend/img/web_services/Web-&-Mobile-Responsiveness.png') }}" alt="best php packages">
+                            <img src="{{ asset('public/frontend/img/web_services/Web-&-Mobile-Responsiveness.png') }}"
+                                alt="best php packages">
                         </div>
                         <div class="txt_feture_product">
                             <h3>Web & Mobile Responsiveness</h3>
@@ -184,7 +190,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card light-pink" style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
+                    <div class="card light-pink"
+                        style="background-image: url({{ asset('public/frontend/img/seller-bg.png') }});">
                         <h2>End-to-End Laravel Development Solutions</h2>
                         <p>From custom web applications to enterprise-level solutions, we provide full-cycle Laravel
                             development
@@ -229,6 +236,7 @@
                 });
             });
         });
+
         function incrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
@@ -237,6 +245,7 @@
             qty++;
             updateCartQty(packageId, qty, input);
         }
+
         function decrementQty(button) {
             const wrapper = button.closest('.package-wrapper');
             const input = wrapper.querySelector('.qty-input');
@@ -247,6 +256,7 @@
                 updateCartQty(packageId, qty, input);
             }
         }
+
         function updateCartQty(packageId, qty, inputEl) {
             fetch("{{ route('cart.updateQty') }}", {
                     method: 'POST',

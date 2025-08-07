@@ -31,6 +31,7 @@
                 @foreach ($ppc as $ppcc)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $ppcc->id)}}">
                             <img src="{{ asset('public/storage/' . $ppcc->image) }}" alt="ppc services">
                             <h3>{{ $ppcc->title }}</h3>
                             @php
@@ -45,6 +46,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $ppcc->description) as $feature)
                                     @php

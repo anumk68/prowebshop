@@ -83,6 +83,16 @@
                 </a>
             </li>
             <li class="menu-title">
+
+                <a class="nav-link {{ request()->routeIs(['reviews.list']) ? 'active' : '' }}"
+                    style="{{ request()->routeIs(['reviews.list']) ? 'color: #3461ff0; background-color:  rgba(52, 97, 255, 0.1)' : '' }}"
+                    href="{{ route('reviews.list') }}">
+                    <div class="parent-icon"> <i class="bi bi-star-fill"></i>
+                    </div>
+                    <div class="menu-title">Reviews </div>
+                </a>
+            </li>
+            <li class="menu-title">
                 {{-- <a
                     class="nav-link {{ request()->routeIs(['blogs', 'create-blog', 'update-blog']) ? 'active' : '' }}"
                     href="{{ route('blogs') }}"> --}}
@@ -122,6 +132,17 @@
                     href="{{ route('blogss') }}">
                     <div class="parent-icon"><i class="bi bi-book"></i></i></div>
                     <div class="menu-title">Blog</div>
+                </a>
+            </li>
+            <li class="menu-title">
+                {{-- <a
+                    class="nav-link {{ request()->routeIs(['blogs', 'create-blog', 'update-blog']) ? 'active' : '' }}"
+                    href="{{ route('blogs') }}"> --}}
+                <a class="nav-link {{ request()->routeIs(['admin.offers.index']) ? 'active' : '' }}"
+                    style="{{ request()->routeIs(['admin.offers.index']) ? 'color: #3461ff0; background-color:  rgba(52, 97, 255, 0.1)' : '' }}"
+                    href="{{ route('admin.offers.index') }}">
+                    <div class="parent-icon"><i class="bi bi-gift"></i></div>
+                    <div class="menu-title">Offers</div>
                 </a>
             </li>
             <li class="menu-title">

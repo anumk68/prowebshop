@@ -29,6 +29,7 @@
                 @foreach ($wix as $wixdevelopment)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $wixdevelopment->id)}}">
                             <img src="{{ asset('public/storage/' . $wixdevelopment->image) }}" alt="Wix Starter Package">
                             <h3>{{ $wixdevelopment->title }}</h3>
                             @php
@@ -43,6 +44,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $wixdevelopment->description) as $feature)
                                     @php

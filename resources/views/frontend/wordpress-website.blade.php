@@ -33,6 +33,7 @@
                 @foreach ($wordpress as $word)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $laravel->id)}}">
                             <img src="{{ asset('public/storage/' . $word->image) }}" alt="wordpress website development
                                             ">
                             <h3>{{ $word->title }}</h3>
@@ -48,6 +49,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $word->description) as $feature)
                                     @php
@@ -83,7 +85,7 @@
                                         <input type="hidden" name="package_id" value="{{ $word->id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn_theme">Add To Cart</button>
-                                    </form> 
+                                    </form>
                                 @endunless
                                 @if ($cartItem)
                                     <button type="submit" class="btn_theme" disabled>Add To Cart</button>

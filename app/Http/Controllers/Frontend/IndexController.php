@@ -6,13 +6,17 @@ use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\ContactUs;
 use App\Models\Meta_Setting;
+use App\Models\Offer;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Package;
 use App\Models\PhpLaravelPackage;
+use App\Models\Review;
 use App\Models\Type;
+use App\Models\User;
 use App\Models\WebFlowWebsitePackage;
 use App\Models\WordpressPackage;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,137 +29,136 @@ class IndexController extends Controller
     public function index()
     {
 
-        $php = Package::where('is_active', 1)->where('type', 1)->get();
-        $react = Package::where('is_active', 1)->where('type', 2)->get();
-        $shopify = Package::where('is_active', 1)->where('type', 3)->get();
+        $php               = Package::where('is_active', 1)->where('type', 1)->get();
+        $react             = Package::where('is_active', 1)->where('type', 2)->get();
+        $shopify           = Package::where('is_active', 1)->where('type', 3)->get();
         $customDevelopment = Package::where('is_active', 1)->where('type', 4)->get();
-        $webFlow = Package::where('is_active', 1)->where('type', 5)->get();
-        $wix = Package::where('is_active', 1)->where('type', 6)->get();
-        $wordpress = Package::where('is_active', 1)->where('type', 7)->get();
-        $graphic = Package::where('is_active', 1)->where('type', 8)->get();
-        $seo = Package::where('is_active', 1)->where('type', 9)->get();
-        $ppc = Package::where('is_active', 1)->where('type', 10)->get();
-        $smo = Package::where('is_active', 1)->where('type', 11)->get();
-        $emailMarkeitng = Package::where('is_active', 1)->where('type', 12)->get();
-        $blogssss = Blog::where('is_active', 1)->orderby('created_at', 'desc')->limit(3)->get();
-        $meta_title = Meta_Setting::where('meta_name', 'title_home')->first();
-        $meta_description = Meta_Setting::where('meta_name', 'description_home')->first();
+        $webFlow           = Package::where('is_active', 1)->where('type', 5)->get();
+        $wix               = Package::where('is_active', 1)->where('type', 6)->get();
+        $wordpress         = Package::where('is_active', 1)->where('type', 7)->get();
+        $graphic           = Package::where('is_active', 1)->where('type', 8)->get();
+        $seo               = Package::where('is_active', 1)->where('type', 9)->get();
+        $ppc               = Package::where('is_active', 1)->where('type', 10)->get();
+        $smo               = Package::where('is_active', 1)->where('type', 11)->get();
+        $emailMarkeitng    = Package::where('is_active', 1)->where('type', 12)->get();
+        $blogssss          = Blog::where('is_active', 1)->orderby('created_at', 'desc')->limit(3)->get();
+        $meta_title        = Meta_Setting::where('meta_name', 'title_home')->first();
+        $meta_description  = Meta_Setting::where('meta_name', 'description_home')->first();
 
         return view('frontend.index', compact('meta_title', 'meta_description', 'php', 'webFlow', 'wordpress', 'customDevelopment', 'shopify', 'wix', 'react', 'graphic', 'seo', 'ppc', 'smo', 'emailMarkeitng', 'blogssss'));
     }
 
     public function about()
     {
-        $php = PhpLaravelPackage::where('is_active', 1)->get();
-        $webFlow = WebFlowWebsitePackage::where('is_active', 1)->get();
-        $wordpress = WordpressPackage::where('is_active', 1)->get();
-        $meta_title = Meta_Setting::where('meta_name', 'title_about')->first();
+        $php              = PhpLaravelPackage::where('is_active', 1)->get();
+        $webFlow          = WebFlowWebsitePackage::where('is_active', 1)->get();
+        $wordpress        = WordpressPackage::where('is_active', 1)->get();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_about')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_about')->first();
         return view('frontend.about', compact('php', 'webFlow', 'wordpress', 'meta_title', 'meta_description'));
     }
 
     public function phpLaravel()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_php_laravel')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_php_laravel')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_php_laravel')->first();
-        $php = Package::where('is_active', 1)->where('type', 1)->get();
+        $php              = Package::where('is_active', 1)->where('type', 1)->get();
         return view('frontend.php-laravel-website', compact('php', 'meta_title', 'meta_description'));
     }
 
     public function reactJava()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_java_react_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_java_react_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_java_react_packages')->first();
-        $react = Package::where('is_active', 1)->where('type', 2)->get();
+        $react            = Package::where('is_active', 1)->where('type', 2)->get();
         return view('frontend.react-java-website', compact('react', 'meta_title', 'meta_description'));
     }
 
     public function shopify()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_shopify_development')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_shopify_development')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_shopify_development')->first();
-        $shopify = Package::where('is_active', 1)->where('type', 3)->get();
+        $shopify          = Package::where('is_active', 1)->where('type', 3)->get();
         return view('frontend.shopify-website', compact('shopify', 'meta_title', 'meta_description'));
     }
 
     public function customWebsite()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_custom_website_development_packages')->first();
-        $meta_description = Meta_Setting::where('meta_name', 'description_custom_website_development_packages')->first();
+        $meta_title        = Meta_Setting::where('meta_name', 'title_custom_website_development_packages')->first();
+        $meta_description  = Meta_Setting::where('meta_name', 'description_custom_website_development_packages')->first();
         $customDevelopment = Package::where('is_active', 1)->where('type', 4)->get();
         return view('frontend.custom-devlopment', compact('customDevelopment', 'meta_title', 'meta_description'));
     }
 
     public function webFlow()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_affordable_webflow_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_affordable_webflow_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_affordable_webflow_packages')->first();
-        $webFlow = Package::where('is_active', 1)->where('type', 5)->get();
+        $webFlow          = Package::where('is_active', 1)->where('type', 5)->get();
         return view('frontend.webflow-devlopment', compact('webFlow', 'meta_title', 'meta_description'));
     }
 
     public function wixWebsite()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_wix-website-development')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_wix-website-development')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_wix-website-development')->first();
-        $wix = Package::where('is_active', 1)->where('type', 6)->get();
+        $wix              = Package::where('is_active', 1)->where('type', 6)->get();
         return view('frontend.wix-website', compact('wix', 'meta_title', 'meta_description'));
     }
 
     public function wordpressWebsite()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_wordpress_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_wordpress_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_wordpress_packages')->first();
-        $wordpress = Package::where('is_active', 1)->where('type', 7)->get();
+        $wordpress        = Package::where('is_active', 1)->where('type', 7)->get();
         return view('frontend.wordpress-website', compact('wordpress', 'meta_title', 'meta_description'));
     }
 
-
     public function graphic()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_packages_for_graphic_design')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_packages_for_graphic_design')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_packages_for_graphic_design')->first();
-        $graphic = Package::where('is_active', 1)->where('type', 8)->get();
+        $graphic          = Package::where('is_active', 1)->where('type', 8)->get();
         return view('frontend.graphic', compact('graphic', 'meta_title', 'meta_description'));
     }
 
     public function seo()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_affordable_seo_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_affordable_seo_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_affordable_seo_packages')->first();
-        $seo = Package::where('is_active', 1)->where('type', 9)->get();
+        $seo              = Package::where('is_active', 1)->where('type', 9)->get();
         return view('frontend.seo-services', compact('seo', 'meta_title', 'meta_description'));
     }
 
     public function ppc()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_ppc_advertising_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_ppc_advertising_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_ppc_advertising_packages')->first();
-        $ppc = Package::where('is_active', 1)->where('type', 10)->get();
+        $ppc              = Package::where('is_active', 1)->where('type', 10)->get();
 
         return view('frontend.ppc-service', compact('ppc', 'meta_title', 'meta_description'));
     }
 
     public function smo()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_best_smo_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_best_smo_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_best_smo_packages')->first();
-        $smo = Package::where('is_active', 1)->where('type', 11)->get();
+        $smo              = Package::where('is_active', 1)->where('type', 11)->get();
 
         return view('frontend.smo-service', compact('smo', 'meta_title', 'meta_description'));
     }
 
     public function emailMarketing()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_email_marketing_packages')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_email_marketing_packages')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_email_marketing_packages')->first();
-        $emailMarkeitng = Package::where('is_active', 1)->where('type', 12)->get();
+        $emailMarkeitng   = Package::where('is_active', 1)->where('type', 12)->get();
         return view('frontend.email-marketing', compact('emailMarkeitng', 'meta_title', 'meta_description'));
     }
 
     public function blog()
     {
-        $blogssss = Blog::where('is_active', 1)->orderBy('id', 'desc')->get();
+        $blogssss = Blog::where('is_active', 1)->orderBy('id', 'desc')->paginate(9);
         return view('frontend.blog', compact('blogssss'));
     }
 
@@ -175,41 +178,41 @@ class IndexController extends Controller
 
     public function contactUs()
     {
-        $meta_title = Meta_Setting::where('meta_name', 'title_contact_us')->first();
+        $meta_title       = Meta_Setting::where('meta_name', 'title_contact_us')->first();
         $meta_description = Meta_Setting::where('meta_name', 'description_contact_us')->first();
-        $services_type = Type::where('is_active', '1')->get();
+        $services_type    = Type::where('is_active', '1')->get();
         return view('frontend.contact_us', compact('services_type', 'meta_title', 'meta_description'));
     }
 
     public function contactUsStore(Request $request)
     {
         $request->validate([
-            'name' => [
+            'name'     => [
                 'required',
                 'regex:/^[A-Za-z\s]+$/',
                 'max:255',
             ],
-            'phone' => 'required|digits:10',
-            'email' => 'required|email|unique:contact_us,email',
+            'phone'    => 'required|digits:10',
+            'email'    => 'required|email|unique:contact_us,email',
             'services' => 'required|string|max:255',
         ]);
-        $data = new ContactUs();
-        $data->name = $request->name;
-        $data->phone = $request->phone;
-        $data->email = $request->email;
+        $data           = new ContactUs();
+        $data->name     = $request->name;
+        $data->phone    = $request->phone;
+        $data->email    = $request->email;
         $data->services = $request->services;
-        $save = $data->save();
+        $save           = $data->save();
 
         if ($save) {
             try {
                 $mail = new PHPMailer(true);
                 $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'hardeepsingh.digirush@gmail.com';
-                $mail->Password = 'fkithynhakninddq';
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'hardeepsingh.digirush@gmail.com';
+                $mail->Password   = 'fkithynhakninddq';
                 $mail->SMTPSecure = 'tls';
-                $mail->Port = 587;
+                $mail->Port       = 587;
 
                 $mail->setFrom('hardeepsingh.digirush@gmail.com', 'Hardeep');
                 $mail->addAddress($request->email, $request->name);
@@ -328,17 +331,17 @@ class IndexController extends Controller
                 ->get();
         } else {
             $sessionCart = session()->get('cart', []);
-            $carts = collect($sessionCart)->map(function ($item) {
+            $carts       = collect($sessionCart)->map(function ($item) {
                 $package = Package::with('typess')->find($item['package_id']);
                 if ($package) {
                     return (object) [
-                        'id' => null,
+                        'id'         => null,
                         'package_id' => $package->id,
-                        'quantity' => $item['quantity'],
-                        'title' => $package->title,
-                        'amount' => $package->amount,
-                        'image' => $package->image,
-                        'type' => optional($package->typeRelation)->type,
+                        'quantity'   => $item['quantity'],
+                        'title'      => $package->title,
+                        'amount'     => $package->amount,
+                        'image'      => $package->image,
+                        'type'       => optional($package->typeRelation)->type,
                     ];
                 }
                 return null;
@@ -346,8 +349,6 @@ class IndexController extends Controller
         }
         return view('frontend.cart', compact('carts'));
     }
-
-
 
     // public function addToCart(Request $request)
     // {
@@ -381,12 +382,11 @@ class IndexController extends Controller
     //     return redirect()->route('cart')->with('success', 'Product added to cart!');
     // }
 
-
     public function addToCart(Request $request)
     {
         $request->validate([
             'package_id' => 'required|exists:packages,id',
-            'quantity' => 'required|integer|min:1',
+            'quantity'   => 'required|integer|min:1',
         ]);
 
         $user = Auth::guard('userWeb')->user();
@@ -404,9 +404,9 @@ class IndexController extends Controller
             }
 
             Cart::create([
-                'user_id' => $user->id,
+                'user_id'    => $user->id,
                 'package_id' => $request->package_id,
-                'quantity' => $request->quantity,
+                'quantity'   => $request->quantity,
             ]);
         } else {
             // Guest user - session cart
@@ -419,7 +419,7 @@ class IndexController extends Controller
                 // Otherwise, create new entry
                 $cart[$request->package_id] = [
                     'package_id' => $request->package_id,
-                    'quantity' => $request->quantity,
+                    'quantity'   => $request->quantity,
                 ];
             }
 
@@ -428,8 +428,6 @@ class IndexController extends Controller
 
         return redirect()->route('cart')->with('success', 'Product added to cart!');
     }
-
-
 
     // public function addToCart(Request $request)
     // {
@@ -473,12 +471,11 @@ class IndexController extends Controller
     //     return redirect()->route('cart')->with('success', 'Product added to cart!');
     // }
 
-
     public function updateQuantity(Request $request)
     {
         $request->validate([
             'package_id' => 'required|exists:packages,id',
-            'quantity' => 'required|integer|min:1',
+            'quantity'   => 'required|integer|min:1',
         ]);
 
         $user = auth()->guard('userWeb')->user();
@@ -495,14 +492,14 @@ class IndexController extends Controller
             }
             return response()->json(['error' => 'Item not found'], 404);
         } else {
-            $cart = session()->get('cart', []);
+            $cart  = session()->get('cart', []);
             $found = false;
 
             // Check both associative & numeric array cases
             foreach ($cart as $key => $item) {
                 if ((isset($item['package_id']) && $item['package_id'] == $request->package_id) || $key == $request->package_id) {
                     $cart[$key]['quantity'] = $request->quantity;
-                    $found = true;
+                    $found                  = true;
                     break;
                 }
             }
@@ -515,9 +512,6 @@ class IndexController extends Controller
             return response()->json(['error' => 'Item not found'], 404);
         }
     }
-
-
-
 
     // public function updateQuantity(Request $request)
     // {
@@ -540,7 +534,6 @@ class IndexController extends Controller
     //     return response()->json(['error' => 'Item not found'], 404);
     // }
 
-
     public function removeFromCart(Request $request)
     {
         $request->validate([
@@ -560,7 +553,7 @@ class IndexController extends Controller
             }
             return redirect()->back()->with('error', 'Item not found.');
         } else {
-            $cart = session()->get('cart', []);
+            $cart  = session()->get('cart', []);
             $found = false;
 
             // Check both associative & numeric array cases
@@ -581,9 +574,6 @@ class IndexController extends Controller
         }
     }
 
-
-
-
     // public function removeFromCart(Request $request)
     // {
     //     $user = auth()->guard('userWeb')->user();
@@ -600,10 +590,9 @@ class IndexController extends Controller
     //     return redirect()->back()->with('error', 'Item not found.');
     // }
 
-
     public function cart_amount_totals()
     {
-        $user = auth()->guard('userWeb')->user();
+        $user     = auth()->guard('userWeb')->user();
         $subtotal = 0;
 
         if ($user) {
@@ -612,7 +601,7 @@ class IndexController extends Controller
             foreach ($carts as $cart) {
                 $priceParts = explode(' ', $cart->package->amount);
                 $firstPrice = $priceParts[0] ?? '$0';
-                $unit = (float) filter_var($firstPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $unit       = (float) filter_var($firstPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $subtotal += $unit * $cart->quantity;
             }
         } else {
@@ -623,7 +612,7 @@ class IndexController extends Controller
                 if ($package) {
                     $priceParts = explode(' ', $package->amount);
                     $firstPrice = $priceParts[0] ?? '$0';
-                    $unit = (float) filter_var($firstPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                    $unit       = (float) filter_var($firstPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                     $subtotal += $unit * $item['quantity'];
                 }
             }
@@ -631,11 +620,9 @@ class IndexController extends Controller
 
         return response()->json([
             'subtotal' => '$' . number_format($subtotal, 2),
-            'total' => '$' . number_format($subtotal, 2),
+            'total'    => '$' . number_format($subtotal, 2),
         ]);
     }
-
-
 
     // public function cart_amount_totals()
     // {
@@ -658,7 +645,6 @@ class IndexController extends Controller
     //         'total' => '$' . number_format($subtotal, 2),
     //     ]);
     // }
-
 
     public function checkout()
     {
@@ -687,7 +673,6 @@ class IndexController extends Controller
         }
     }
 
-
     // public function checkout()
     // {
     //     $user = Auth::guard('userWeb')->user();
@@ -709,7 +694,6 @@ class IndexController extends Controller
     //         return redirect()->route('user.login.get')->with('error', 'Please login!');
     //     }
     // }
-
 
     // public function placeOrder(Request $request, $id)
     // {
@@ -740,16 +724,14 @@ class IndexController extends Controller
     //     return redirect()->route('/')->with('success', 'Order placed successfully.');
     // }
 
-
-
     public function placeOrder(Request $request)
     {
         $request->validate([
-            'phone' => 'required',
+            'phone'          => 'required',
             'digits:10',
-            'address' => 'required|string',
-            'city' => 'required|string',
-            'pincode' => 'required|string|max:10',
+            'address'        => 'required|string',
+            'city'           => 'required|string',
+            'pincode'        => 'required|string|max:10',
             'payment_method' => 'required|in:cod,online',
         ]);
 
@@ -768,8 +750,8 @@ class IndexController extends Controller
 
             foreach ($cartItems as $item) {
                 $firstAmount = is_array($item->package->amount)
-                    ? $item->package->amount[0]
-                    : $item->package->amount;
+                ? $item->package->amount[0]
+                : $item->package->amount;
 
                 preg_match('/\d+/', $firstAmount, $matches);
                 $cleanAmount = isset($matches[0]) ? (float) $matches[0] : 0;
@@ -779,23 +761,23 @@ class IndexController extends Controller
             }
 
             $order = Order::create([
-                'user_id' => $user->id,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'city' => $request->city,
-                'pincode' => $request->pincode,
+                'user_id'        => $user->id,
+                'phone'          => $request->phone,
+                'address'        => $request->address,
+                'city'           => $request->city,
+                'pincode'        => $request->pincode,
                 'payment_method' => $request->payment_method,
                 'payment_status' => $request->payment_method === 'cod' ? 'pending' : 'Paid',
-                'total_amount' => $total,
-                'status' => 'pending',
+                'total_amount'   => $total,
+                'status'         => 'pending',
             ]);
 
             foreach ($cartItems as $item) {
                 OrderItem::create([
-                    'order_id' => $order->id,
+                    'order_id'   => $order->id,
                     'product_id' => $item->package_id,
-                    'quantity' => $item->quantity,
-                    'price' => $item->calculated_price,
+                    'quantity'   => $item->quantity,
+                    'price'      => $item->calculated_price,
                 ]);
             }
 
@@ -825,18 +807,98 @@ class IndexController extends Controller
     {
         return view('frontend.termsandcondition');
     }
+
     public function singleproduct()
     {
         return view('frontend.single-product');
     }
-    public function productdetailmain()
+
+    public function productdetailmain($id)
     {
-        $services_type = Type::where('is_active', '1')->get();
-        return view('frontend.product_detail_main',compact('services_type'));
+        $services_type   = Type::where('is_active', '1')->get();
+        $package_details = Package::with('typess')->where('is_active', 1)->where('id', $id)->first();
+        $reviews         = Review::with('user')->where('package_id', $package_details->id)->get();
+        $total_rating    = Review::where('package_id', $package_details->id)->count();
+        $total_review    = Review::where('package_id', $package_details->id)
+            ->whereNotNull('review')
+            ->where('review', '!=', '')
+            ->count();
+        $averageRating = Review::where('package_id', $package_details->id)
+            ->avg('rating');
+
+        $averageRating = round($averageRating, 1);
+
+        $today = Carbon::today();
+        $offers = Offer::where('is_active', 1)
+            ->where('package_id', $package_details->id)
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->get();
+
+        if ($package_details) {
+            $recent_package = Package::where('is_active', 1)->orderby('created_at', 'desc')->take(3)->get();
+            return view('frontend.product_detail_main', compact('services_type', 'package_details', 'recent_package', 'reviews', 'total_review', 'total_rating', 'averageRating', 'offers'));
+        } else {
+            return redirect()->route('/');
+        }
     }
-     public function accountpage()
+
+    public function accountpage()
     {
-        return view('frontend.accountpage');
+        $user   = User::where('id', Auth::guard('userWeb')->user()->id)->first();
+        $orders = Order::with(['user', 'items.package'])->where('user_id', $user->id)->latest()->get();
+        return view('frontend.accountpage', compact('user', 'orders'));
+    }
+
+    public function account_update($id, Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email,' . $id,
+            'phone'    => 'nullable|string|max:20',
+            'zip_code' => 'nullable|string|max:10',
+            'address'  => 'nullable|string',
+            'country'  => 'nullable|string|max:100',
+            'state'    => 'nullable|string|max:100',
+            'city'     => 'nullable|string|max:100',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->phone    = $request->phone;
+        $user->zip_code = $request->zip_code;
+        $user->address  = $request->address;
+        $user->country  = $request->country;
+        $user->state    = $request->state;
+        $user->city     = $request->city;
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function review_store(Request $request)
+    {
+        if (! Auth::guard('userWeb')->check()) {
+            return response()->json(['message' => 'Unauthorized. Please login first.'], 401);
+        }
+
+        $request->validate([
+            'package_id' => 'required|integer|exists:packages,id',
+            'rating'     => 'required|integer|min:1|max:5',
+            'review'     => 'nullable|string|max:1000',
+        ]);
+
+        Review::create([
+            'user_id'    => Auth::guard('userWeb')->id(),
+            'package_id' => $request->package_id,
+            'rating'     => $request->rating,
+            'review'     => $request->review,
+        ]);
+
+        return response()->json(['message' => 'Thank you for your review!']);
     }
 
 }

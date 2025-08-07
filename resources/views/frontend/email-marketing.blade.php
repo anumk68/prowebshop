@@ -29,6 +29,7 @@
                 @foreach ($emailMarkeitng as $email)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $email->id)}}">
                             <img src="{{ asset('public/storage/' . $email->image) }}" alt="Starter Email & SMS Package">
                             <h3>{{ $email->title }}</h3>
                             @php
@@ -43,6 +44,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $email->description) as $feature)
                                     @php

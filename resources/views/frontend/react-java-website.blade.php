@@ -26,6 +26,7 @@
                 @foreach ($react as $java)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $java->id)}}">
                             <img src="{{ asset('public/storage/' . $java->image) }}" alt="Java Development Services
 ">
                             <h3>{{ $java->title }} </h3>
@@ -41,6 +42,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $java->description) as $feature)
                                     @php

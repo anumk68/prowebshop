@@ -162,7 +162,9 @@
                 @foreach ($php as $laravel)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                            <a href="{{route('productdetail', $laravel->id)}}">
                             <img src="{{ asset('public/storage/' . $laravel->image) }}" alt="web service packages">
+
                             <h3>{{ $laravel->title }}</h3>
                             @php
                                 $amounts = explode(' ', $laravel->amount);
@@ -176,6 +178,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                              </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $laravel->description) as $feature)
                                     @php
@@ -247,6 +250,7 @@
                 @foreach ($webFlow as $web)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $web->id)}}">
                             <img src="{{ asset('public/storage/' . $web->image) }}"
                                 alt="best digital marketing services                                                                                                                                                                        ">
                             <h3>{{ $web->title }}</h3>
@@ -262,6 +266,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $web->description) as $feature)
                                     @php
@@ -333,6 +338,7 @@
                 @foreach ($wordpress as $word)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $word->id)}}">
                             <img src="{{ asset('public/storage/' . $word->image) }}" alt="digital marketing agency">
                             <h3>{{ $word->title }}</h3>
                             @php
@@ -347,6 +353,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <p style="margin-left: 12px;">{{ $word->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $word->description) as $feature)
@@ -419,6 +426,7 @@
                 @foreach ($customDevelopment as $custom)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $custom->id)}}">
                             <img src="{{ asset('public/storage/' . $custom->image) }}" alt="digital marketing and advertising agency
                                                                                                                 ">
                             <h3>{{ $custom->title }}</h3>
@@ -434,6 +442,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $custom->description) as $feature)
                                     @php
@@ -504,6 +513,7 @@
                 @foreach ($shopify as $shop)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $shop->id)}}">
                             <img src="{{ asset('public/storage/' . $shop->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $shop->title }}</h3>
                             @php
@@ -519,6 +529,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $shop->description) as $feature)
                                     @php
@@ -538,6 +549,8 @@
                                     @endif
                                 @endforeach
                             </ul>
+
+                             </a>
                             @php
                                 $user = auth()->guard('userWeb')->user();
                                 $cartItem = null;
@@ -590,6 +603,7 @@
                 @foreach ($wix as $wixdevelopment)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $wixdevelopment->id)}}">
                             <img src="{{ asset('public/storage/' . $wixdevelopment->image) }}" alt="Wix Starter Package">
                             <h3>{{ $wixdevelopment->title }}</h3>
                             @php
@@ -604,6 +618,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $wixdevelopment->description) as $feature)
                                     @php
@@ -675,6 +690,7 @@
                 @foreach ($react as $java)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $java->id)}}">
                             <img src="{{ asset('public/storage/' . $java->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $java->title }} </h3>
                             @php
@@ -690,6 +706,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $java->description) as $feature)
                                     @php
@@ -759,6 +776,7 @@
                 @foreach ($graphic as $design)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $design->id)}}">
                             <img src="{{ asset('public/storage/' . $design->image) }}" alt="Graphic Design Starter Package">
                             <h3>{{ $design->title }}</h3>
                             @php
@@ -773,7 +791,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
-                            <p style="margin-left: 12px;">{{ $design->ideal }}</p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $design->description) as $feature)
                                     @php
@@ -843,6 +861,7 @@
                 @foreach ($seo as $seoss)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $seoss->id)}}">
                             <img src="{{ asset('public/storage/' . $seoss->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $seoss->title }}</h3>
                             @php
@@ -857,6 +876,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <p style="margin-left: 12px;">{{ $seoss->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $seoss->description) as $feature)
@@ -927,6 +947,7 @@
                 @foreach ($ppc as $ppcc)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $ppcc->id)}}">
                             <img src="{{ asset('public/storage/' . $ppcc->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $ppcc->title }}</h3>
                             @php
@@ -942,6 +963,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <p style="margin-left: 12px;">{{ $ppcc->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $ppcc->description) as $feature)
@@ -1012,6 +1034,7 @@
                 @foreach ($smo as $smoss)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $smoss->id)}}">
                             <img src="{{ asset('public/storage/' . $smoss->image) }}" alt="Starter SMO Package">
                             <h3>{{ $smoss->title }}</h3>
                             @php
@@ -1027,6 +1050,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <p style="margin-left: 12px;">{{ $smoss->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $smoss->description) as $feature)
@@ -1099,6 +1123,7 @@
                 @foreach ($emailMarkeitng as $email)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $email->id)}}">
                             <img src="{{ asset('public/storage/' . $email->image) }}"
                                 alt="digital marketing and advertising agency                                                                                                                                                         ">
                             <h3>{{ $email->title }}</h3>
@@ -1114,7 +1139,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
-                            <p style="margin-left: 12px;">{{ $email->ideal }}</p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $email->description) as $feature)
                                     @php
@@ -1380,7 +1405,7 @@
 
             <div class="owl-carousel owl-theme" id="blog-carousel">
 
-            
+
                 @foreach ($blogssss as $blogD)
                     <div class="item">
                         <div class="blog-section">

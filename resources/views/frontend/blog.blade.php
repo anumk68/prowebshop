@@ -20,7 +20,7 @@
     <section class="blog" style="margin-top: 50px; margin-bottom: 60px;">
         <div class="container">
             <div class="row">
-                @foreach ($blogssss->take(9) as $blogD) {{-- Shows max 9 blogs --}}
+                @foreach ($blogssss as $blogD) {{-- Shows max 9 blogs --}}
                     <div class="col-lg-4 col-md-6 col-12 mb-4">
                         <div class="card h-100 shadow-sm">
                             <a href="{{ route('blog-detail', $blogD->slug ?? '') }}">
@@ -58,18 +58,17 @@
                 @endforeach
             </div>
 
-            <!-- Static pagination design -->
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center mt-4">
-                    <ul class="pagination custom-pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row">
+    <div class="col-12 justify-content-center">
+        <nav>
+            <ul class="pagination mt-4">
+                {{-- Laravel pagination output --}}
+                {{ $blogssss->links('pagination::bootstrap-5') }}
+            </ul>
+        </nav>
+    </div>
+</div>
+
         </div>
     </section>
 @endsection

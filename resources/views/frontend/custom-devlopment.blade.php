@@ -34,6 +34,7 @@
                 @foreach ($customDevelopment as $custom)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $custom->id)}}">
                             <img src="{{ asset('public/storage/' . $custom->image) }}" alt="WordPress Startup Package">
                             <h3>{{ $custom->title }}</h3>
                             @php
@@ -48,6 +49,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $custom->description) as $feature)
                                     @php

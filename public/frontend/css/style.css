@@ -51,11 +51,11 @@ span.linear_color {
   margin-bottom: 10px;
   border-radius: 4px;
 }
-.top_header { 
+.top_header {
   color: #000424;
   padding: 6px 0px;
   font-family: Arial, sans-serif;
- } 
+ }
 .countdown {
   display: flex;
   gap: 9px;
@@ -82,7 +82,7 @@ span.off_present {
   background: linear-gradient(117deg, #FEF0F8 14.35%, #DACFFF 84.4%);
 }
 .nav-links li a.active {
-  color: #5E36F2; 
+  color: #5E36F2;
   font-weight: bold;
 }
 nav ul.nav-links {
@@ -449,7 +449,7 @@ button.btn_theme {
 .owl-dot {
   width: 12px;
   height: 12px;
-  background: #d251f0 !important; 
+  background: #d251f0 !important;
   display: inline-block;
   margin: 5px;
   border-radius: 50%;
@@ -582,7 +582,7 @@ section.logo_sliders .item:hover p {
   margin-top: 20px !important;
 }
 .owl-dot.active {
-  background: #6c5ce7 !important; 
+  background: #6c5ce7 !important;
 }
 button.btn_theme a {
   color: #ffff;
@@ -1616,7 +1616,7 @@ a.privacy_mail:hover {
     display: flex;
     justify-content: end;
     gap: 15px;
-    
+
 }
 .footer_r a:hover {
     color: #c84ff1;
@@ -1628,7 +1628,7 @@ a.privacy_mail:hover {
 }
 
 .footer_r a:last-child::after {
-    content: ""; 
+    content: "";
 }
 .txt_feture_product p {
     text-align: justify;
@@ -1697,7 +1697,7 @@ a.privacy_mail:hover {
 section.login_form_main {
     padding: 80px 20px !important;
     text-align: center !important;
-} 
+}
 section.login_form_main .btn-login{
   margin: 0 !important;
 }
@@ -1744,4 +1744,28 @@ button.btn_theme.w-100.btn-register {
     border-color: rgba(0, 0, 0, 0.12);
     border-image: initial;
     padding: 15px;
+}
+
+ .card_product_detail {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+.star-rating {
+    direction: ltr;
+    font-size: 32px;
+    display: inline-flex;
+    gap: 5px;
+    cursor: pointer;
+}
+.rating-output {
+  color: #ba4bf1;
+}
+
+.decrip_content a {
+    color: #ba4bf1;
 }

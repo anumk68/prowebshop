@@ -29,6 +29,7 @@
                 @foreach ($smo as $smoss)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
+                             <a href="{{route('productdetail', $smoss->id)}}">
                             <img src="{{ asset('public/storage/' . $smoss->image) }}" alt="smo services
                             ">
                             <h3>{{ $smoss->title }}</h3>
@@ -44,6 +45,7 @@
                                     <del>{{ $secondAmount }}</del>
                                 @endif
                             </p>
+                             </a>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $smoss->description) as $feature)
                                     @php

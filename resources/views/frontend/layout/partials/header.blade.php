@@ -183,19 +183,26 @@
                         </label>
 
                         <ul class="drop-menu">
-                            <li><a href="{{ route('php-laravel-website') }}" {{ request()->routeIs('php-laravel-website') ? 'active' : '' }}>PHP Laravel
+                            <li><a href="{{ route('php-laravel-website') }}"
+                                    {{ request()->routeIs('php-laravel-website') ? 'active' : '' }}>PHP Laravel
                                     Website</a></li>
-                            <li><a href="{{ route('react-java-website') }}" {{ request()->routeIs('react-java-website') ? 'active' : '' }}>React – Java
+                            <li><a href="{{ route('react-java-website') }}"
+                                    {{ request()->routeIs('react-java-website') ? 'active' : '' }}>React – Java
                                     Website</a></li>
-                            <li><a href="{{ route('shopify-development') }}" {{ request()->routeIs('shopify-development') ? 'active' : '' }}>Shopify Website</a>
+                            <li><a href="{{ route('shopify-development') }}"
+                                    {{ request()->routeIs('shopify-development') ? 'active' : '' }}>Shopify Website</a>
                             </li>
-                            <li><a href="{{ route('custom-website-development') }}" {{ request()->routeIs('custom-website-development') ? 'active' : '' }}>Custom-development</a>
+                            <li><a href="{{ route('custom-website-development') }}"
+                                    {{ request()->routeIs('custom-website-development') ? 'active' : '' }}>Custom-development</a>
                             </li>
-                            <li><a href="{{ route('webflow-development') }}" {{ request()->routeIs('webflow-development') ? 'active' : '' }}>Webflow Website</a>
+                            <li><a href="{{ route('webflow-development') }}"
+                                    {{ request()->routeIs('webflow-development') ? 'active' : '' }}>Webflow Website</a>
                             </li>
-                            <li><a href="{{ route('wix-website-development') }}" {{ request()->routeIs('wix-webstie-development') ? 'active' : '' }}>Wix Website</a>
+                            <li><a href="{{ route('wix-website-development') }}"
+                                    {{ request()->routeIs('wix-webstie-development') ? 'active' : '' }}>Wix Website</a>
                             </li>
-                            <li><a href="{{ route('wordpress-website-development') }}" {{ request()->routeIs('wordpress-website-development') ? 'active' : '' }}>WordPress
+                            <li><a href="{{ route('wordpress-website-development') }}"
+                                    {{ request()->routeIs('wordpress-website-development') ? 'active' : '' }}>WordPress
                                     Website</a></li>
                         </ul>
                     </li>
@@ -223,20 +230,22 @@
                         $user = auth()->guard('userWeb')->user();
                         $cartItems = collect();
                         $sessionCart = session()->get('cart', []);
-                        $sessionCartItems = collect($sessionCart)->map(function ($item) {
-                            $package = Package::find($item['package_id']);
-                            if ($package) {
-                                return (object) [
-                                    'quantity' => $item['quantity'],
-                                    'package' => (object) [
-                                        'title' => $package->title,
-                                        'amount' => $package->amount,
-                                        'image' => $package->image,
-                                    ],
-                                ];
-                            }
-                            return null;
-                        })->filter();
+                        $sessionCartItems = collect($sessionCart)
+                            ->map(function ($item) {
+                                $package = Package::find($item['package_id']);
+                                if ($package) {
+                                    return (object) [
+                                        'quantity' => $item['quantity'],
+                                        'package' => (object) [
+                                            'title' => $package->title,
+                                            'amount' => $package->amount,
+                                            'image' => $package->image,
+                                        ],
+                                    ];
+                                }
+                                return null;
+                            })
+                            ->filter();
                         $cartItems = $cartItems->concat($sessionCartItems);
                         if ($user) {
                             $dbCartItems = Cart::where('user_id', $user->id)->with('package')->get();
@@ -247,7 +256,7 @@
 
                     <a href="javascript:void(0);" class="cart-icon" id="cart-toggle">
                         <img src="{{ asset('public/frontend/img/cart.svg') }}" alt="">
-                        <span id="cart-count" class="icons_zero">{{ $count_cart ?? 0}}</span>
+                        <span id="cart-count" class="icons_zero">{{ $count_cart ?? 0 }}</span>
                     </a>
                     <div class="mini-cart-dropdown" id="mini-cart" style="display: none;">
                         @if (!empty($cartItems) && count($cartItems) > 0)
@@ -283,19 +292,30 @@
 
                     @if (auth()->guard('userWeb')->check())
                         <div class="dropdown d-inline-block">
-                            <a href="#" class="user-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="user-icon dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <i class="fas fa-user"></i><span>
                                     {{ ucfirst(auth()->guard('userWeb')->user()->name) }}</span>
 
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm p-2" style="min-width: 180px;">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2"
+                                        href="{{ route('account.page') }}">
+                                        <i class="fa fa-user-circle"></i> My Account
+                                    </a>
+                                </li>
                                 <li>
                                     <form method="POST" action="{{ route('user.logout') }}">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">Sign Out</button>
+                                        <button type="submit" class="dropdown-item d-flex align-items-center gap-2">
+                                            <i class="fa fa-sign-out-alt"></i> Sign Out
+                                        </button>
                                     </form>
                                 </li>
                             </ul>
+
+
                         </div>
                     @else
                         <a href="{{ route('user.login.get') }}" class="user-icon">
@@ -309,7 +329,7 @@
     </nav>
 </header>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const toastEl = document.getElementById('sessionToast');
         if (toastEl) {
             const toast = new bootstrap.Toast(toastEl, {
@@ -318,22 +338,21 @@
             toast.show();
         }
     });
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const cartToggle = document.getElementById("cart-toggle");
         const miniCart = document.getElementById("mini-cart");
 
-        cartToggle.addEventListener("click", function (e) {
+        cartToggle.addEventListener("click", function(e) {
             e.stopPropagation();
             miniCart.style.display = miniCart.style.display === "block" ? "none" : "block";
         });
 
-        document.addEventListener("click", function () {
+        document.addEventListener("click", function() {
             miniCart.style.display = "none";
         });
 
-        miniCart.addEventListener("click", function (e) {
+        miniCart.addEventListener("click", function(e) {
             e.stopPropagation();
         });
     });
-
 </script>
