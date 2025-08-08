@@ -14,4 +14,16 @@ class ContactUsController extends Controller
         $contactus = ContactUs::orderby('created_at', 'desc')->get();
         return view('admin.contactUs.contactUs', compact('contactus'));
     }
+public function contact_delete($id)
+{
+    $contactus = ContactUs::find($id);
+
+    if ($contactus) {
+        $contactus->delete();
+        return redirect()->back()->with('success', 'Contact deleted successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Contact not found.');
+}
+
 }

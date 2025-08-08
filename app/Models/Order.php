@@ -21,5 +21,10 @@ public function items()
     return $this->hasMany(OrderItem::class);
 }
 
+public function package()
+{
+    return $this->hasMany(Package::class);
+}
+
 
 }

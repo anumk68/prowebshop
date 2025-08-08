@@ -83,10 +83,8 @@
                                             <td>{{ $order->address }}</td>
                                             <td>{{ $order->created_at }}</td>
                                             <td>${{ $order->total_amount }}</td>
-                                            <td>
-                                                <a href="{{ route('invoice.download', $order->id) }}"
-                                                    class="btn btn-sm btn-primary">Download</a>
-                                            </td>
+                                           <td> <a href="{{ route('invoice.download', $order->id) }}" class="btn btn-sm btn-primary">Download</a></td>
+
 
                                         </tr>
                                     @endforeach

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -9,69 +8,78 @@ use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
- public function create()
+    public function create()
     {
         $packages = Package::all();
         return view('admin.offers.create', compact('packages'));
     }
-
     public function store(Request $request)
     {
         $request->validate([
             'package_id' => 'required|exists:packages,id',
-            'title' => 'required|string|max:255',
-           'discount' => 'required|numeric|min:0|max:100',
-
+            'title'      => 'required|string|max:255',
+            'discount'   => 'required|numeric|min:0|max:100',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_date'   => 'required|date|after_or_equal:start_date',
         ]);
 
+        $existingOffer = Offer::where('package_id', $request->package_id)
+            ->where(function ($query) use ($request) {
+                $query->whereBetween('start_date', [$request->start_date, $request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date, $request->end_date])
+                    ->orWhere(function ($q) use ($request) {
+                        $q->where('start_date', '<=', $request->start_date)
+                            ->where('end_date', '>=', $request->end_date);
+                    });
+            })
+            ->first();
+
+        if ($existingOffer) {
+            return redirect()->back()->with('error', 'An offer already exists for this package during the selected date range.');
+        }
         Offer::create($request->all());
 
         return redirect()->route('admin.offers.index')->with('success', 'Offer created successfully.');
     }
 
     public function index()
-{
-    $offers = Offer::with('package')->latest()->get();
-    return view('admin.offers.list', compact('offers'));
-}
+    {
+        $offers = Offer::with('package')->latest()->get();
+        return view('admin.offers.list', compact('offers'));
+    }
 
+    public function destroy($id)
+    {
+        $offer = Offer::findOrFail($id);
+        $offer->delete();
 
+        return redirect()->route('admin.offers.index')->with('success', 'Offer deleted successfully.');
+    }
 
-public function destroy($id)
-{
-    $offer = Offer::findOrFail($id);
-    $offer->delete();
+    public function edit($id)
+    {
+        $offer    = Offer::findOrFail($id);
+        $packages = Package::all();
 
-    return redirect()->route('admin.offers.index')->with('success', 'Offer deleted successfully.');
-}
+        return view('admin.offers.edit', compact('offer', 'packages'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'package_id' => 'required|exists:packages,id',
+            'title'      => 'required|string|max:255',
+            'discount'   => 'required|numeric|min:0|max:100',
+            'start_date' => 'nullable|date',
+            'end_date'   => 'nullable|date|after_or_equal:start_date',
+            'is_active'  => 'required|in:0,1',
 
+        ]);
 
-public function edit($id)
-{
-    $offer = Offer::findOrFail($id);
-    $packages = Package::all();
+        $offer = Offer::findOrFail($id);
+        $offer->update($request->all());
 
-    return view('admin.offers.edit', compact('offer', 'packages'));
-}
-
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'package_id' => 'required|exists:packages,id',
-        'title' => 'required|string|max:255',
-       'discount' => 'required|numeric|min:0|max:100',
-
-        'start_date' => 'nullable|date',
-        'end_date' => 'nullable|date|after_or_equal:start_date',
-    ]);
-
-    $offer = Offer::findOrFail($id);
-    $offer->update($request->all());
-
-    return redirect()->route('admin.offers.index')->with('success', 'Offer updated successfully.');
-}
+        return redirect()->route('admin.offers.index')->with('success', 'Offer updated successfully.');
+    }
 
 }

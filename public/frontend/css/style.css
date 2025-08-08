@@ -1223,8 +1223,8 @@ section.about_testimonial_main .owl-prev, .owl-next {
   font-size: 24px !important;
   position: absolute;
 }
-.owl-prev { left: 10px; }
-.owl-next { right: 10px; }
+/* .owl-prev { left: 10px; }
+.owl-next { right: 10px; } */
 
 .owl-prev:hover, .owl-next:hover {
   background: #4A90E2 !important;
@@ -1247,8 +1247,8 @@ section.about_testimonial_main .owl-prev, .owl-next {
   font-size: 24px !important;
   position: absolute;
 }
-section.about_testimonial_main .owl-prev { left: -50px; }
-.owl-next { right: -50px; }
+/* section.about_testimonial_main .owl-prev { left: -50px; } */
+/* .owl-next { right: -50px; } */
 section.about_testimonial_main .owl-prev:hover, .owl-next:hover {
   background: #000425 !important;
   color: #fff !important;

@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
 
     // ----------------------------------contact us list-------------------------------------//
     Route::get('web-contact-us', [ContactUsController::class, 'contact_us'])->name('contact.us.list');
+    Route::post('/admin/contact/delete/{id}', [ContactUsController::class, 'contact_delete'])->name('contact.delete');
 
     // ----------------------------------orders list-------------------------------------//
     Route::get('web-orders', [OrdersController::class, 'ordersList'])->name('orders.list');

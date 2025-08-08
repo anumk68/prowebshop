@@ -16,6 +16,7 @@ use App\Models\Type;
 use App\Models\User;
 use App\Models\WebFlowWebsitePackage;
 use App\Models\WordpressPackage;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class IndexController extends Controller
         $ppc               = Package::where('is_active', 1)->where('type', 10)->get();
         $smo               = Package::where('is_active', 1)->where('type', 11)->get();
         $emailMarkeitng    = Package::where('is_active', 1)->where('type', 12)->get();
-        $blogssss          = Blog::where('is_active', 1)->orderby('created_at', 'desc')->limit(3)->get();
+        $blogssss          = Blog::where('is_active', 1)->orderby('created_at', 'desc')->limit(6)->get();
         $meta_title        = Meta_Setting::where('meta_name', 'title_home')->first();
         $meta_description  = Meta_Setting::where('meta_name', 'description_home')->first();
 
@@ -649,80 +650,57 @@ class IndexController extends Controller
     public function checkout()
     {
         $user = Auth::guard('userWeb')->user();
-        if ($user) {
 
-            DB::table('carts')
-                ->whereNull('user_id')
-                ->update(['user_id' => $user->id]);
-
-            $cartItems = DB::table('carts')
-                ->join('packages', 'carts.package_id', '=', 'packages.id')
-                ->join('types', 'packages.type', '=', 'types.id')
-                ->where('carts.user_id', $user->id)
-                ->orderBy('carts.created_at', 'DESC')
-                ->select('carts.*', 'packages.title', 'packages.amount as package_amount', 'packages.image', 'types.type')
-                ->get();
-            $subtotal = $cartItems->sum(function ($item) {
-                $amount = floatval(str_replace(['$', ','], '', $item->package_amount));
-                return $amount * $item->quantity;
-            });
-            $total = $subtotal;
-            return view('frontend.checkout', compact('cartItems', 'subtotal', 'total'));
-        } else {
+        if (! $user) {
             return redirect()->route('user.login.get')->with('error', 'Please login!');
         }
+
+        DB::table('carts')
+            ->whereNull('user_id')
+            ->update(['user_id' => $user->id]);
+
+        $cartItems = DB::table('carts')
+            ->join('packages', 'carts.package_id', '=', 'packages.id')
+            ->join('types', 'packages.type', '=', 'types.id')
+            ->where('carts.user_id', $user->id)
+            ->orderBy('carts.created_at', 'DESC')
+            ->select('carts.*', 'packages.title', 'packages.amount as package_amount', 'packages.image', 'types.type', 'packages.id as package_id')
+            ->get();
+
+        $today      = Carbon::today();
+        $packageIds = $cartItems->pluck('package_id');
+
+        $offers = Offer::whereIn('package_id', $packageIds)
+            ->where('is_active', '1')
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->get()
+            ->keyBy('package_id');
+
+        $subtotal = 0;
+
+        foreach ($cartItems as $item) {
+            $cleanAmount = floatval(str_replace(['$', '₹', ','], '', $item->package_amount));
+            $totalPrice  = $cleanAmount * $item->quantity;
+            $offer       = $offers[$item->package_id] ?? null;
+
+            if ($offer && $offer->discount > 0) {
+                $discountedPrice = $totalPrice - ($totalPrice * $offer->discount / 100);
+            } else {
+                $discountedPrice = $totalPrice;
+            }
+
+            $item->total_price      = $totalPrice;
+            $item->discounted_price = $discountedPrice;
+            $item->offer            = $offer;
+            $subtotal += $discountedPrice;
+        }
+
+        $total = $subtotal;
+
+        return view('frontend.checkout', compact('cartItems', 'subtotal', 'total'));
     }
 
-    // public function checkout()
-    // {
-    //     $user = Auth::guard('userWeb')->user();
-    //     if ($user) {
-    //         $cartItems = DB::table('carts')
-    //             ->join('packages', 'carts.package_id', '=', 'packages.id')
-    //             ->join('types', 'packages.type', '=', 'types.id')
-    //             ->where('carts.user_id', $user->id)
-    //             ->orderBy('carts.created_at', 'DESC')
-    //             ->select('carts.*', 'packages.title', 'packages.amount as package_amount', 'packages.image', 'types.type')
-    //             ->get();
-    //         $subtotal = $cartItems->sum(function ($item) {
-    //             $amount = floatval(str_replace(['$', ','], '', $item->package_amount));
-    //             return $amount * $item->quantity;
-    //         });
-    //         $total = $subtotal;
-    //         return view('frontend.checkout', compact('cartItems', 'subtotal', 'total'));
-    //     } else {
-    //         return redirect()->route('user.login.get')->with('error', 'Please login!');
-    //     }
-    // }
-
-    // public function placeOrder(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'phone' => 'required|numeric|digits:10',
-    //         'address' => 'required|string',
-    //         'city' => 'required|string',
-    //         'pincode' => 'required|string|max:10',
-    //         'payment_method' => 'required|in:cod,online',
-    //     ]);
-    //     $user = auth()->guard('userWeb')->user();
-    //     $package = Package::find($id);
-    //     $firstAmount = is_array($package->amount) ? $package->amount[0] : $package->amount;
-    //     preg_match('/\d+/', $firstAmount, $matches);
-    //     $cleanAmount = isset($matches[0]) ? (float) $matches[0] : 0;
-    //     $order = Order::create([
-    //         'user_id' => $user->id,
-    //         'package_id' => $package->id,
-    //         'phone' => $request->phone,
-    //         'address' => $request->address,
-    //         'city' => $request->city,
-    //         'pincode' => $request->pincode,
-    //         'payment_method' => $request->payment_method,
-    //         'payment_status' => $request->payment_method === 'cod' ? 'pending' : 'Paid',
-    //         'total_amount' => $cleanAmount,
-    //         'status' => 'pending',
-    //     ]);
-    //     return redirect()->route('/')->with('success', 'Order placed successfully.');
-    // }
 
     public function placeOrder(Request $request)
     {
@@ -745,18 +723,35 @@ class IndexController extends Controller
             if ($cartItems->isEmpty()) {
                 return redirect()->back()->with('error', 'Your cart is empty.');
             }
-
             $total = 0;
+            $today = Carbon::today();
 
             foreach ($cartItems as $item) {
-                $firstAmount = is_array($item->package->amount)
-                ? $item->package->amount[0]
-                : $item->package->amount;
+                $package = $item->package;
+
+                // Clean the amount (₹, $, commas, etc.)
+                $firstAmount = is_array($package->amount)
+                ? $package->amount[0]
+                : $package->amount;
 
                 preg_match('/\d+/', $firstAmount, $matches);
                 $cleanAmount = isset($matches[0]) ? (float) $matches[0] : 0;
 
-                $item->calculated_price = $cleanAmount * $item->quantity;
+                $basePrice = $cleanAmount * $item->quantity;
+
+                $offer = Offer::where('package_id', $item->package_id)
+                    ->whereDate('start_date', '<=', $today)
+                    ->whereDate('end_date', '>=', $today)
+                    ->first();
+
+                if ($offer && $offer->discount > 0) {
+                    // Apply discount
+                    $discountedPrice        = $basePrice - ($basePrice * $offer->discount / 100);
+                    $item->calculated_price = $discountedPrice;
+                } else {
+                    $item->calculated_price = $basePrice;
+                }
+
                 $total += $item->calculated_price;
             }
 
@@ -815,11 +810,17 @@ class IndexController extends Controller
 
     public function productdetailmain($id)
     {
+
+        $today           = Carbon::today();
         $services_type   = Type::where('is_active', '1')->get();
         $package_details = Package::with('typess')->where('is_active', 1)->where('id', $id)->first();
-        $reviews         = Review::with('user')->where('package_id', $package_details->id)->get();
-        $total_rating    = Review::where('package_id', $package_details->id)->count();
-        $total_review    = Review::where('package_id', $package_details->id)
+        $single_offer    = Offer::where('package_id', $package_details->id)->where('package_id', $package_details->id)
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)->first();
+
+        $reviews      = Review::with('user')->where('package_id', $package_details->id)->get();
+        $total_rating = Review::where('package_id', $package_details->id)->count();
+        $total_review = Review::where('package_id', $package_details->id)
             ->whereNotNull('review')
             ->where('review', '!=', '')
             ->count();
@@ -828,7 +829,6 @@ class IndexController extends Controller
 
         $averageRating = round($averageRating, 1);
 
-        $today = Carbon::today();
         $offers = Offer::where('is_active', 1)
             ->where('package_id', $package_details->id)
             ->whereDate('start_date', '<=', $today)
@@ -837,7 +837,7 @@ class IndexController extends Controller
 
         if ($package_details) {
             $recent_package = Package::where('is_active', 1)->orderby('created_at', 'desc')->take(3)->get();
-            return view('frontend.product_detail_main', compact('services_type', 'package_details', 'recent_package', 'reviews', 'total_review', 'total_rating', 'averageRating', 'offers'));
+            return view('frontend.product_detail_main', compact('services_type', 'package_details', 'recent_package', 'reviews', 'total_review', 'total_rating', 'averageRating', 'offers', 'single_offer'));
         } else {
             return redirect()->route('/');
         }
@@ -901,4 +901,12 @@ class IndexController extends Controller
         return response()->json(['message' => 'Thank you for your review!']);
     }
 
+    public function downloadInvoice($id)
+    {
+        $order = Order::with('items', 'user')->findOrFail($id);
+// dd($order->items);
+        $pdf = PDF::loadView('frontend.invoice-download', compact('order'));
+
+        return $pdf->download('prowebshop-invoice-' . $order->id . '.pdf');
+    }
 }

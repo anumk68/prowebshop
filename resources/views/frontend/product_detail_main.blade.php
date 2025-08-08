@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="text_about_us">
-                    <h2>Product Detail</h2>
+                    <h2>Package Detail</h2>
                 </div>
             </div>
         </div>
@@ -25,18 +25,35 @@
                             preg_match_all('/\d+/', $package_details->amount, $matches);
                             $amounts = $matches[0];
 
-                            $firstAmount = isset($amounts[0]) ? (int) $amounts[0] : 0;
+                            $originalPrice = isset($amounts[0]) ? (int) $amounts[0] : 0;
                             $secondAmount = isset($amounts[1]) ? (int) $amounts[1] : 0;
-                            $discountPercent = 0;
-                            if ($secondAmount > 0 && $secondAmount > $firstAmount) {
-                                $discountPercent = round((($secondAmount - $firstAmount) / $secondAmount) * 100);
+
+                            $hasDiscount = isset($single_offer->discount) && $single_offer->discount > 0;
+
+                            if ($hasDiscount) {
+                                $finalPrice = round($originalPrice - ($originalPrice * $single_offer->discount) / 100);
+                            } else {
+                                $finalPrice = $secondAmount > 0 ? $secondAmount : $originalPrice;
                             }
                         @endphp
-                        <p class="price">${{ $firstAmount }} <span class="old-price">${{ $secondAmount }}</span> <span
-                                class="discount">{{ $discountPercent }}% off</span>
-                        </p>
-                        <p class="rating">⭐ {{$averageRating}} | {{$total_rating}} ratings and {{$total_review}} reviews</p>
 
+                        <p class="price">
+                            @if (optional($single_offer)->discount)
+                                ${{ $finalPrice }}
+                            @else
+                                ${{ $originalPrice }}
+                            @endif
+
+                            @if ($hasDiscount)
+                                <span class="old-price">${{ $originalPrice }}</span>
+                                <span class="discount">{{ $single_offer->discount }}% off</span>
+                            @elseif($secondAmount > 0)
+                                <span class="old-price">${{ $secondAmount }}</span>
+                            @endif
+                        </p>
+
+                        <p class="rating">⭐ {{ $averageRating }} | {{ $total_rating }} ratings and {{ $total_review }}
+                            reviews</p>
 
                         <div class="size-section">
                             <p>Technology Stack</p>
@@ -44,7 +61,7 @@
                                 {{-- @foreach ($package_technology as $package_tech)
 
                                 @endforeach --}}
-                                <button>{{$package_details->typess->type}}</button>
+                                <button>{{ $package_details->typess->type }}</button>
 
                             </div>
                         </div>
@@ -52,23 +69,24 @@
                         <div class="size-section">
                             <p>Package Type</p>
                             <div class="size-options">
-                                <button>Startup</button>
-                                <button>Basic</button>
-                                <button>Corporate</button>
+                                <button>{{ $package_details->title }}</button>
+
                             </div>
                         </div>
                         <div class="offers">
                             @foreach ($offers as $offer)
-                            <p><img src="{{ asset('frontend/img/icon_product_mini.webp') }}" alt=""><b> Offer</b> {{$offer->discount}}%
-                               {{$offer->description}}</p>
+                                <p><img src="{{ asset('frontend/img/icon_product_mini.webp') }}" alt=""><b>
+                                        Offer</b> {{ $offer->discount }}%
+                                    {{ $offer->description }}</p>
                             @endforeach
- 
+
                         </div>
                         <div id="package-{{ $package_details->id }}" class="package-wrapper">
                             <form method="POST" action="{{ route('add.to.cart') }}" class="d-flex align-items-center">
                                 @csrf
                                 <input type="hidden" name="package_id" value="{{ $package_details->id }}">
                                 <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="price" value="{{$finalPrice}}">
                                 <button type="submit" class="btn_theme mt-3 ">
                                     Add To Cart
                                 </button>
@@ -281,22 +299,23 @@
                 @foreach ($recent_package as $package)
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="pricing-card">
-                              <a href="{{route('productdetail', $package->id)}}">
-                            <img src="{{ asset('public/storage/' . $package->image) }}" alt="digital marketing agency">
-                            <h3>{{ $package->title }}</h3>
-                            @php
-                                $amounts = explode(' ', $package->amount);
-                                $firstAmount = $amounts[0] ?? '';
-                                $secondAmount = $amounts[1] ?? '';
-                            @endphp
-                            <p class="price">
-                                <span>Estimated Cost:</span>
-                                <span>{{ $firstAmount }}</span>
-                                @if ($secondAmount)
-                                    <del>{{ $secondAmount }}</del>
-                                @endif
-                            </p>
-                              </a>
+                            <a href="{{ route('productdetail', $package->id) }}">
+                                <img src="{{ asset('public/storage/' . $package->image) }}"
+                                    alt="digital marketing agency">
+                                <h3>{{ $package->title }}</h3>
+                                @php
+                                    $amounts = explode(' ', $package->amount);
+                                    $firstAmount = $amounts[0] ?? '';
+                                    $secondAmount = $amounts[1] ?? '';
+                                @endphp
+                                <p class="price">
+                                    <span>Estimated Cost:</span>
+                                    <span>{{ $firstAmount }}</span>
+                                    @if ($secondAmount)
+                                        <del>{{ $secondAmount }}</del>
+                                    @endif
+                                </p>
+                            </a>
                             <p style="margin-left: 12px;">{{ $package->ideal }}</p>
                             <ul>
                                 @foreach (preg_split('/\r\n|\r|\n/', $package->description) as $feature)

@@ -1,4 +1,7 @@
 @extends('frontend.layout.app')
+@section('title', $blogDetails->meta_title ?? 'Default Website Title')
+@section('description', $blogDetails->meta_description ?? 'Default description')
+@section('keywords', $blogDetails->meta_keyword ?? 'Default description')
 @section('content')
     <div class="banner-about tran5s wow fadeInUp blog_detail_banner"
         style="

@@ -113,7 +113,7 @@
     </script>
     <script>
         $('.logo_slides').trigger('destroy.owl.carousel');
-        $('.logo_slides').owlCarousel({ 
+        $('.logo_slides').owlCarousel({
             loop: true,
             margin: 20,
             nav: false,
@@ -202,7 +202,7 @@
 
                 if (count < target) {
                     counter.innerText = count + increment;
-                    setTimeout(updateCount, 30); 
+                    setTimeout(updateCount, 30);
                 } else {
                     counter.innerText = target;
                 }

@@ -36,7 +36,6 @@
                             <td>{{ $offer->package->title ?? 'N/A' }}</td>
                             <td>{{ $offer->title }}</td>
                             <td>
-
                                     {{ $offer->discount }}%
 
                             </td>

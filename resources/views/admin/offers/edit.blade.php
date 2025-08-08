@@ -57,6 +57,14 @@
             <input type="date" name="end_date" value="{{ old('end_date', $offer->end_date) }}" class="form-control" />
         </div>
 
+        <div class="mb-3">
+    <label class="form-label">Status</label>
+    <select name="is_active" class="form-control" required>
+        <option value="1" {{ old('is_active', $offer->is_active) == 1 ? 'selected' : '' }}>Active</option>
+        <option value="0" {{ old('is_active', $offer->is_active) == 0 ? 'selected' : '' }}>Inactive</option>
+    </select>
+</div>
+
         <button type="submit" class="btn btn-success">Update Offer</button>
         <a href="{{ route('admin.offers.index') }}" class="btn btn-secondary">Cancel</a>
     </form>

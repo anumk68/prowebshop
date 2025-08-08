@@ -31,6 +31,7 @@
                                         <th>Email</th>
                                         <th>Phone no.</th>
                                         <th>Service</th>
+                                        <th>Action </th>
                                     </tr>
                                 </thead>
                                 <tbody id="cate">
@@ -41,6 +42,14 @@
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->phone }}</td>
                                             <td>{{ $contact->services }}</td>
+                                            <td>
+                                                <form action="{{ route('contact.delete', $contact->id) }}" method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

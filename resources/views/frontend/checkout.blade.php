@@ -19,8 +19,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" name="email" id="email" value="{{ $user->email }}" class="form-control"
-                                    disabled>
+                                <input type="email" name="email" id="email" value="{{ $user->email }}"
+                                    class="form-control" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone Number</label>
@@ -33,16 +33,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <textarea name="address" id="address" class="form-control" required
-                                    rows="3">{{ old('address') }}</textarea>
+                                <textarea name="address" id="address" class="form-control" required rows="3">{{ old('address') }}</textarea>
                                 @error('address')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" id="city" name="city" class="form-control" value="{{ old('city') }}"
-                                    required>
+                                <input type="text" id="city" name="city" class="form-control"
+                                    value="{{ old('city') }}" required>
                                 @error('city')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -59,11 +58,13 @@
                             <div class="mb-4">
                                 <label class="form-label">Payment Method</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="payment_method" value="cod" {{ old('payment_method', 'cod') === 'cod' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="payment_method" value="cod"
+                                        {{ old('payment_method', 'cod') === 'cod' ? 'checked' : '' }}>
                                     <label class="form-check-label">Cash on Delivery</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="payment_method" value="online" {{ old('payment_method') === 'online' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="payment_method" value="online"
+                                        {{ old('payment_method') === 'online' ? 'checked' : '' }}>
                                     <label class="form-check-label">Online Payment</label>
                                 </div>
                                 @error('payment_method')
@@ -89,14 +90,25 @@
                                             <small class="text-muted">Qty: {{ $item->quantity }}</small>
                                         </div>
                                     </div>
-                                    @php
-                                        $cleanAmount = floatval(
-                                            str_replace(['$', '₹', ','], '', $item->package_amount),
-                                        );
-                                    @endphp
-                                    <span class="fw-semibold">${{ number_format($cleanAmount * $item->quantity, 2) }}</span>
+
+                                    {{-- Show discounted and original prices --}}
+                                    <div class="text-end">
+                                        <span class="fw-semibold text-dark">
+                                            ${{ number_format($item->discounted_price, 2) }}
+                                        </span>
+
+                                        @if ($item->offer && $item->offer->discount > 0)
+                                            <span class="text-muted text-decoration-line-through ms-2">
+                                                ${{ number_format($item->total_price, 2) }}
+                                            </span>
+                                            <span class="text-success fw-medium ms-2">
+                                                ({{ $item->offer->discount }}% off)
+                                            </span>
+                                        @endif
+                                    </div>
                                 </li>
                             @endforeach
+
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Subtotal</span>
                                 <strong>${{ number_format($subtotal, 2) }}</strong>
@@ -106,6 +118,7 @@
                                 <strong>${{ number_format($total, 2) }}</strong>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </div>
